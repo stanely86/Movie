@@ -1,0 +1,896 @@
+{
+    "data": {
+        "title": {
+            "__typename": "Title",
+            "id": "tt0120338",
+            "titleText": {
+                "text": "Titanic",
+                "isOriginalTitle": true
+            },
+            "originalTitleText": {
+                "text": "Titanic",
+                "isOriginalTitle": true
+            },
+            "releaseYear": {
+                "__typename": "YearRange",
+                "year": 1997,
+                "endYear": null
+            },
+            "releaseDate": {
+                "__typename": "ReleaseDate",
+                "month": 12,
+                "day": 19,
+                "year": 1997,
+                "country": {
+                    "id": "US"
+                },
+                "restriction": null,
+                "attributes": [],
+                "displayableProperty": {
+                    "qualifiersInMarkdownList": null
+                }
+            },
+            "titleType": {
+                "__typename": "TitleType",
+                "id": "movie",
+                "text": "Movie",
+                "categories": [
+                    {
+                        "id": "movie",
+                        "text": "Movie",
+                        "value": "movie"
+                    }
+                ],
+                "canHaveEpisodes": false,
+                "isEpisode": false,
+                "isSeries": false,
+                "displayableProperty": {
+                    "value": {
+                        "plainText": ""
+                    }
+                }
+            },
+            "primaryImage": {
+                "__typename": "Image",
+                "id": "rm2647458304",
+                "url": "https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg",
+                "height": 3000,
+                "width": 2015
+            },
+            "meta": {
+                "id": "tt0120338",
+                "restrictions": null
+            },
+            "productionStatus": {
+                "__typename": "ProductionStatusDetails",
+                "announcements": null,
+                "currentProductionStage": {
+                    "id": "released",
+                    "text": "Released"
+                },
+                "productionStatusHistory": [
+                    {
+                        "comment": {
+                            "text": "Derived from earliest release of 1997-11-01 (JP)"
+                        },
+                        "date": "1997-11-01",
+                        "status": {
+                            "id": "released",
+                            "text": "Released"
+                        }
+                    }
+                ]
+            },
+            "canRate": {
+                "isRatable": true
+            },
+            "ratingsSummary": {
+                "aggregateRating": 7.9,
+                "voteCount": 1285367
+            },
+            "interests": {
+                "edges": [
+                    {
+                        "node": {
+                            "__typename": "Interest",
+                            "id": "in0000077",
+                            "primaryImage": {
+                                "__typename": "Image",
+                                "id": "rm3123641601",
+                                "url": "https://m.media-amazon.com/images/M/MV5BN2Y0NjIyNDEtYmQ4Mi00Mjc5LTgyOWQtYmM2YTFlZmU2N2VmXkEyXkFqcGdeQXVyMTExMTE3NDg5._V1_.jpg",
+                                "height": 900,
+                                "width": 1200,
+                                "type": "still_frame",
+                                "caption": {
+                                    "plainText": "Orson Welles in Citizen Kane (1941)"
+                                },
+                                "copyright": null,
+                                "createdBy": null,
+                                "source": {
+                                    "text": null,
+                                    "attributionUrl": null,
+                                    "banner": null
+                                },
+                                "names": [
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm0000080",
+                                        "nameText": {
+                                            "text": "Orson Welles"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm3635232257",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BOGJiOThkNDYtNWY1Mi00ZTQ1LWFlZWItOTkwNWE4ZDMyYTEyXkEyXkFqcGdeQXVyMDc2NTEzMw@@._V1_.jpg",
+                                            "height": 3000,
+                                            "width": 2400
+                                        },
+                                        "akas": {
+                                            "edges": [
+                                                {
+                                                    "node": {
+                                                        "text": "O. W. Jeeves"
+                                                    }
+                                                },
+                                                {
+                                                    "node": {
+                                                        "text": "Cornejo Madrid"
+                                                    }
+                                                },
+                                                {
+                                                    "node": {
+                                                        "text": "G.O. Spelvin"
+                                                    }
+                                                },
+                                                {
+                                                    "node": {
+                                                        "text": "Orson Wells"
+                                                    }
+                                                },
+                                                {
+                                                    "node": {
+                                                        "text": "Wells"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "titles": [
+                                    {
+                                        "__typename": "Title",
+                                        "id": "tt0033467",
+                                        "titleText": {
+                                            "text": "Citizen Kane",
+                                            "isOriginalTitle": true
+                                        },
+                                        "originalTitleText": {
+                                            "text": "Citizen Kane",
+                                            "isOriginalTitle": true
+                                        },
+                                        "releaseYear": {
+                                            "__typename": "YearRange",
+                                            "year": 1941,
+                                            "endYear": null
+                                        },
+                                        "releaseDate": {
+                                            "__typename": "ReleaseDate",
+                                            "month": 9,
+                                            "day": 5,
+                                            "year": 1941,
+                                            "country": {
+                                                "id": "US"
+                                            },
+                                            "restriction": null,
+                                            "attributes": [],
+                                            "displayableProperty": {
+                                                "qualifiersInMarkdownList": null
+                                            }
+                                        },
+                                        "titleType": {
+                                            "__typename": "TitleType",
+                                            "id": "movie",
+                                            "text": "Movie",
+                                            "categories": [
+                                                {
+                                                    "id": "movie",
+                                                    "text": "Movie",
+                                                    "value": "movie"
+                                                }
+                                            ],
+                                            "canHaveEpisodes": false,
+                                            "isEpisode": false,
+                                            "isSeries": false,
+                                            "displayableProperty": {
+                                                "value": {
+                                                    "plainText": ""
+                                                }
+                                            }
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm684416000",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BYjBiOTYxZWItMzdiZi00NjlkLWIzZTYtYmFhZjhiMTljOTdkXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+                                            "height": 1649,
+                                            "width": 1100
+                                        }
+                                    }
+                                ],
+                                "countries": [],
+                                "languages": []
+                            },
+                            "description": {
+                                "value": {
+                                    "plainText": "The epic subgenre features grand and sweeping stories often set against significant historical, cultural, or societal backdrops. Epic dramas are characterized by their scope, scale, and often lengthy runtime, as they aim to capture the grandeur of human experiences, events, and emotions."
+                                }
+                            },
+                            "primaryText": {
+                                "__typename": "InterestText",
+                                "id": "Epic",
+                                "text": "Epic"
+                            },
+                            "secondaryText": {
+                                "__typename": "InterestText",
+                                "id": "Subgenre",
+                                "text": "Subgenre"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "__typename": "Interest",
+                            "id": "in0000083",
+                            "primaryImage": {
+                                "__typename": "Image",
+                                "id": "rm1928640001",
+                                "url": "https://m.media-amazon.com/images/M/MV5BZDZhYWJlOWUtOWM5OC00MDBmLTlmNWQtYjA4MTI1YTBlNWZiXkEyXkFqcGdeQXVyNzI1NzMxNzM@._V1_.jpg",
+                                "height": 4426,
+                                "width": 6960,
+                                "type": "still_frame",
+                                "caption": {
+                                    "plainText": "Emma Watson, Saoirse Ronan, Florence Pugh, and Eliza Scanlen in Little Women (2019)"
+                                },
+                                "copyright": "2019 CTMG, Inc. All Rights Reserved.",
+                                "createdBy": null,
+                                "source": {
+                                    "text": null,
+                                    "attributionUrl": null,
+                                    "banner": null
+                                },
+                                "names": [
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm0914612",
+                                        "nameText": {
+                                            "text": "Emma Watson"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm2697969664",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BMTQ3ODE2NTMxMV5BMl5BanBnXkFtZTgwOTIzOTQzMjE@._V1_.jpg",
+                                            "height": 1280,
+                                            "width": 1038
+                                        },
+                                        "akas": {
+                                            "edges": []
+                                        }
+                                    },
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm1519680",
+                                        "nameText": {
+                                            "text": "Saoirse Ronan"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm583442688",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BMjExNTM5NDE4NV5BMl5BanBnXkFtZTcwNzczMzEzOQ@@._V1_.jpg",
+                                            "height": 2048,
+                                            "width": 1361
+                                        },
+                                        "akas": {
+                                            "edges": []
+                                        }
+                                    },
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm6073955",
+                                        "nameText": {
+                                            "text": "Florence Pugh"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm338167297",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BMmVlODM5OWUtYzQ1ZS00NDg4LThjZDItOWZiMDAyZTMwYmM1XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_.jpg",
+                                            "height": 1600,
+                                            "width": 1194
+                                        },
+                                        "akas": {
+                                            "edges": []
+                                        }
+                                    },
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm7340546",
+                                        "nameText": {
+                                            "text": "Eliza Scanlen"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm3804075265",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BNjg1MzY4N2UtYTY3Ni00ZjEzLWExMDMtMjY0Y2NhODQzMTBkXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
+                                            "height": 3866,
+                                            "width": 2578
+                                        },
+                                        "akas": {
+                                            "edges": []
+                                        }
+                                    }
+                                ],
+                                "titles": [
+                                    {
+                                        "__typename": "Title",
+                                        "id": "tt3281548",
+                                        "titleText": {
+                                            "text": "Little Women",
+                                            "isOriginalTitle": true
+                                        },
+                                        "originalTitleText": {
+                                            "text": "Little Women",
+                                            "isOriginalTitle": true
+                                        },
+                                        "releaseYear": {
+                                            "__typename": "YearRange",
+                                            "year": 2019,
+                                            "endYear": null
+                                        },
+                                        "releaseDate": {
+                                            "__typename": "ReleaseDate",
+                                            "month": 12,
+                                            "day": 25,
+                                            "year": 2019,
+                                            "country": {
+                                                "id": "US"
+                                            },
+                                            "restriction": null,
+                                            "attributes": [],
+                                            "displayableProperty": {
+                                                "qualifiersInMarkdownList": null
+                                            }
+                                        },
+                                        "titleType": {
+                                            "__typename": "TitleType",
+                                            "id": "movie",
+                                            "text": "Movie",
+                                            "categories": [
+                                                {
+                                                    "id": "movie",
+                                                    "text": "Movie",
+                                                    "value": "movie"
+                                                }
+                                            ],
+                                            "canHaveEpisodes": false,
+                                            "isEpisode": false,
+                                            "isSeries": false,
+                                            "displayableProperty": {
+                                                "value": {
+                                                    "plainText": ""
+                                                }
+                                            }
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm3221130753",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BY2QzYTQyYzItMzAwYi00YjZlLThjNTUtNzMyMDdkYzJiNWM4XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+                                            "height": 9000,
+                                            "width": 6072
+                                        }
+                                    }
+                                ],
+                                "countries": [],
+                                "languages": []
+                            },
+                            "description": {
+                                "value": {
+                                    "plainText": "The period drama subgenre transports audiences to the past, immersing them in historical contexts and offering insights into the lives, relationships, and challenges of characters from different time periods."
+                                }
+                            },
+                            "primaryText": {
+                                "__typename": "InterestText",
+                                "id": "Period Drama",
+                                "text": "Period Drama"
+                            },
+                            "secondaryText": {
+                                "__typename": "InterestText",
+                                "id": "Subgenre",
+                                "text": "Subgenre"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "__typename": "Interest",
+                            "id": "in0000150",
+                            "primaryImage": {
+                                "__typename": "Image",
+                                "id": "rm4001018112",
+                                "url": "https://m.media-amazon.com/images/M/MV5BMjI3NjcxNTAyM15BMl5BanBnXkFtZTcwMDkwNDUzNw@@._V1_.jpg",
+                                "height": 1378,
+                                "width": 2048,
+                                "type": "still_frame",
+                                "caption": {
+                                    "plainText": "Leonardo DiCaprio and Kate Winslet in Titanic (1997)"
+                                },
+                                "copyright": "2011 Paramount Pictures and Twentieth Century Fox. All Rights Reserved.",
+                                "createdBy": "Photo Credit: Merie Weismiller W",
+                                "source": {
+                                    "text": null,
+                                    "attributionUrl": null,
+                                    "banner": null
+                                },
+                                "names": [
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm0000138",
+                                        "nameText": {
+                                            "text": "Leonardo DiCaprio"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm487490304",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BMjI0MTg3MzI0M15BMl5BanBnXkFtZTcwMzQyODU2Mw@@._V1_.jpg",
+                                            "height": 400,
+                                            "width": 297
+                                        },
+                                        "akas": {
+                                            "edges": [
+                                                {
+                                                    "node": {
+                                                        "text": "Leonardo Di Caprio"
+                                                    }
+                                                },
+                                                {
+                                                    "node": {
+                                                        "text": "Leo DiCaprio"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm0000701",
+                                        "nameText": {
+                                            "text": "Kate Winslet"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm537960448",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BODgzMzM2NTE0Ml5BMl5BanBnXkFtZTcwMTcyMTkyOQ@@._V1_.jpg",
+                                            "height": 2048,
+                                            "width": 1334
+                                        },
+                                        "akas": {
+                                            "edges": []
+                                        }
+                                    }
+                                ],
+                                "titles": [
+                                    {
+                                        "__typename": "Title",
+                                        "id": "tt0120338",
+                                        "titleText": {
+                                            "text": "Titanic",
+                                            "isOriginalTitle": true
+                                        },
+                                        "originalTitleText": {
+                                            "text": "Titanic",
+                                            "isOriginalTitle": true
+                                        },
+                                        "releaseYear": {
+                                            "__typename": "YearRange",
+                                            "year": 1997,
+                                            "endYear": null
+                                        },
+                                        "releaseDate": {
+                                            "__typename": "ReleaseDate",
+                                            "month": 12,
+                                            "day": 19,
+                                            "year": 1997,
+                                            "country": {
+                                                "id": "US"
+                                            },
+                                            "restriction": null,
+                                            "attributes": [],
+                                            "displayableProperty": {
+                                                "qualifiersInMarkdownList": null
+                                            }
+                                        },
+                                        "titleType": {
+                                            "__typename": "TitleType",
+                                            "id": "movie",
+                                            "text": "Movie",
+                                            "categories": [
+                                                {
+                                                    "id": "movie",
+                                                    "text": "Movie",
+                                                    "value": "movie"
+                                                }
+                                            ],
+                                            "canHaveEpisodes": false,
+                                            "isEpisode": false,
+                                            "isSeries": false,
+                                            "displayableProperty": {
+                                                "value": {
+                                                    "plainText": ""
+                                                }
+                                            }
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm2647458304",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg",
+                                            "height": 3000,
+                                            "width": 2015
+                                        }
+                                    }
+                                ],
+                                "countries": [],
+                                "languages": []
+                            },
+                            "description": {
+                                "value": {
+                                    "plainText": "The romantic epic subgenre features grand and sweeping love stories set against a backdrop of significant historical, cultural, or societal events. These stories often span long periods of time, and are characterized by their scope, emotional intensity, and exploration of enduring love in the face of challenges."
+                                }
+                            },
+                            "primaryText": {
+                                "__typename": "InterestText",
+                                "id": "Romantic Epic",
+                                "text": "Romantic Epic"
+                            },
+                            "secondaryText": {
+                                "__typename": "InterestText",
+                                "id": "Subgenre",
+                                "text": "Subgenre"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "__typename": "Interest",
+                            "id": "in0000076",
+                            "primaryImage": {
+                                "__typename": "Image",
+                                "id": "rm1359216640",
+                                "url": "https://m.media-amazon.com/images/M/MV5BMTUwMDIwNTc3MV5BMl5BanBnXkFtZTgwNDkxMDU0MDI@._V1_.jpg",
+                                "height": 3840,
+                                "width": 5760,
+                                "type": "still_frame",
+                                "caption": {
+                                    "plainText": "Mahershala Ali and Alex R. Hibbert in Moonlight (2016)"
+                                },
+                                "copyright": null,
+                                "createdBy": "David Bornfriend",
+                                "source": {
+                                    "text": null,
+                                    "attributionUrl": null,
+                                    "banner": null
+                                },
+                                "names": [
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm0991810",
+                                        "nameText": {
+                                            "text": "Mahershala Ali"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm2527838209",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BZThiZjJjNWYtNGRlYS00NDdkLTk0MTMtYjEwYzM1MDExNTYwXkEyXkFqcGdeQXVyNjY1MTg4Mzc@._V1_.jpg",
+                                            "height": 3569,
+                                            "width": 3260
+                                        },
+                                        "akas": {
+                                            "edges": [
+                                                {
+                                                    "node": {
+                                                        "text": "Mahershalalhashbaz Ali"
+                                                    }
+                                                },
+                                                {
+                                                    "node": {
+                                                        "text": "Mahershala Karim-Ali"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm7683379",
+                                        "nameText": {
+                                            "text": "Alex R. Hibbert"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm3279163136",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BNzYwMTQ1ODY1MV5BMl5BanBnXkFtZTgwMTU5NDc5OTE@._V1_.jpg",
+                                            "height": 3840,
+                                            "width": 5760
+                                        },
+                                        "akas": {
+                                            "edges": [
+                                                {
+                                                    "node": {
+                                                        "text": "Alex Hibbert"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "titles": [
+                                    {
+                                        "__typename": "Title",
+                                        "id": "tt4975722",
+                                        "titleText": {
+                                            "text": "Moonlight",
+                                            "isOriginalTitle": true
+                                        },
+                                        "originalTitleText": {
+                                            "text": "Moonlight",
+                                            "isOriginalTitle": true
+                                        },
+                                        "releaseYear": {
+                                            "__typename": "YearRange",
+                                            "year": 2016,
+                                            "endYear": null
+                                        },
+                                        "releaseDate": {
+                                            "__typename": "ReleaseDate",
+                                            "month": 11,
+                                            "day": 18,
+                                            "year": 2016,
+                                            "country": {
+                                                "id": "US"
+                                            },
+                                            "restriction": null,
+                                            "attributes": [],
+                                            "displayableProperty": {
+                                                "qualifiersInMarkdownList": null
+                                            }
+                                        },
+                                        "titleType": {
+                                            "__typename": "TitleType",
+                                            "id": "movie",
+                                            "text": "Movie",
+                                            "categories": [
+                                                {
+                                                    "id": "movie",
+                                                    "text": "Movie",
+                                                    "value": "movie"
+                                                }
+                                            ],
+                                            "canHaveEpisodes": false,
+                                            "isEpisode": false,
+                                            "isSeries": false,
+                                            "displayableProperty": {
+                                                "value": {
+                                                    "plainText": ""
+                                                }
+                                            }
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm1452607488",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BNzQxNTIyODAxMV5BMl5BanBnXkFtZTgwNzQyMDA3OTE@._V1_.jpg",
+                                            "height": 4096,
+                                            "width": 2764
+                                        }
+                                    }
+                                ],
+                                "countries": [],
+                                "languages": []
+                            },
+                            "description": {
+                                "value": {
+                                    "plainText": "The drama genre is a broad category that features stories portraying human experiences, emotions, conflicts, and relationships in a realistic and emotionally impactful way. Dramas delve into the complexities of human life, often exploring themes of love, loss, morality, societal issues, personal growth, with the aim to evoke an emotional response from the audience by presenting relatable and thought-provoking stories."
+                                }
+                            },
+                            "primaryText": {
+                                "__typename": "InterestText",
+                                "id": "Drama",
+                                "text": "Drama"
+                            },
+                            "secondaryText": {
+                                "__typename": "InterestText",
+                                "id": "Genre",
+                                "text": "Genre"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "__typename": "Interest",
+                            "id": "in0000152",
+                            "primaryImage": {
+                                "__typename": "Image",
+                                "id": "rm3367915520",
+                                "url": "https://m.media-amazon.com/images/M/MV5BMTc0MzYxMTQ1M15BMl5BanBnXkFtZTgwOTk0MTI2NDM@._V1_.jpg",
+                                "height": 1638,
+                                "width": 2048,
+                                "type": "still_frame",
+                                "caption": {
+                                    "plainText": "Ingrid Bergman and Humphrey Bogart in Casablanca (1942)"
+                                },
+                                "copyright": "2008 Getty Images",
+                                "createdBy": "Popperfoto",
+                                "source": {
+                                    "text": "gettyimages.com",
+                                    "attributionUrl": "http://www.gettyimages.com/EditorialImages/Entertainment",
+                                    "banner": null
+                                },
+                                "names": [
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm0000006",
+                                        "nameText": {
+                                            "text": "Ingrid Bergman"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm3619573760",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BMjQyMTYxODQzMF5BMl5BanBnXkFtZTgwMDA1MTI2NDM@._V1_.jpg",
+                                            "height": 2048,
+                                            "width": 1671
+                                        },
+                                        "akas": {
+                                            "edges": []
+                                        }
+                                    },
+                                    {
+                                        "__typename": "Name",
+                                        "id": "nm0000007",
+                                        "nameText": {
+                                            "text": "Humphrey Bogart"
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm3824827905",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BZDRiZWJjOTMtNzczMi00ZTIyLWJmNjAtMzlkNWU5ODc4NDk1XkEyXkFqcGdeQXVyMDc2NTEzMw@@._V1_.jpg",
+                                            "height": 4203,
+                                            "width": 3295
+                                        },
+                                        "akas": {
+                                            "edges": []
+                                        }
+                                    }
+                                ],
+                                "titles": [
+                                    {
+                                        "__typename": "Title",
+                                        "id": "tt0034583",
+                                        "titleText": {
+                                            "text": "Casablanca",
+                                            "isOriginalTitle": true
+                                        },
+                                        "originalTitleText": {
+                                            "text": "Casablanca",
+                                            "isOriginalTitle": true
+                                        },
+                                        "releaseYear": {
+                                            "__typename": "YearRange",
+                                            "year": 1942,
+                                            "endYear": null
+                                        },
+                                        "releaseDate": {
+                                            "__typename": "ReleaseDate",
+                                            "month": 1,
+                                            "day": 23,
+                                            "year": 1943,
+                                            "country": {
+                                                "id": "US"
+                                            },
+                                            "restriction": null,
+                                            "attributes": [],
+                                            "displayableProperty": {
+                                                "qualifiersInMarkdownList": null
+                                            }
+                                        },
+                                        "titleType": {
+                                            "__typename": "TitleType",
+                                            "id": "movie",
+                                            "text": "Movie",
+                                            "categories": [
+                                                {
+                                                    "id": "movie",
+                                                    "text": "Movie",
+                                                    "value": "movie"
+                                                }
+                                            ],
+                                            "canHaveEpisodes": false,
+                                            "isEpisode": false,
+                                            "isSeries": false,
+                                            "displayableProperty": {
+                                                "value": {
+                                                    "plainText": ""
+                                                }
+                                            }
+                                        },
+                                        "primaryImage": {
+                                            "__typename": "Image",
+                                            "id": "rm1220089088",
+                                            "url": "https://m.media-amazon.com/images/M/MV5BY2IzZGY2YmEtYzljNS00NTM5LTgwMzUtMzM1NjQ4NGI0OTk0XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_.jpg",
+                                            "height": 754,
+                                            "width": 500
+                                        }
+                                    }
+                                ],
+                                "countries": [],
+                                "languages": []
+                            },
+                            "description": {
+                                "value": {
+                                    "plainText": "The romance genre features the theme of romantic relationships and emotional connections between characters. These stories focus on the development of love, desire, and intimacy between protagonists, often exploring the challenges, conflicts, and triumphs that arise in their relationships."
+                                }
+                            },
+                            "primaryText": {
+                                "__typename": "InterestText",
+                                "id": "Romance",
+                                "text": "Romance"
+                            },
+                            "secondaryText": {
+                                "__typename": "InterestText",
+                                "id": "Genre",
+                                "text": "Genre"
+                            }
+                        }
+                    }
+                ]
+            },
+            "reviews": {
+                "total": 3379
+            },
+            "metacritic": {
+                "url": "https://www.metacritic.com/movie/titanic?ftag=MCD-06-10aaa1c",
+                "metascore": {
+                    "score": 75,
+                    "reviewCount": 35
+                }
+            },
+            "externalLinks": {
+                "total": 236
+            },
+            "series": null,
+            "plot": {
+                "plotText": {
+                    "plainText": "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic."
+                }
+            },
+            "certificate": {
+                "__typename": "Certificate",
+                "id": "ce0136784",
+                "rating": "PG-13",
+                "ratingsBody": {
+                    "id": "MPAA",
+                    "text": "MPAA"
+                },
+                "ratingReason": "Rated PG-13 for disaster related peril and violence, nudity, sensuality and brief language",
+                "country": {
+                    "id": "US"
+                }
+            },
+            "runtime": {
+                "seconds": 11640
+            },
+            "episodes": null,
+            "engagementStatistics": {
+                "watchlistStatistics": {
+                    "displayableCount": {
+                        "text": "Added by 675K users"
+                    }
+                }
+            }
+        }
+    }
+}
