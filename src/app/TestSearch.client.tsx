@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from 'next/image';
 
 interface NameSearchResult {
     name: string;
@@ -84,13 +85,13 @@ export default function TestSearch() {
                         {searchType === "NAME" ? (
                             <>
                                 <p>{(result as NameSearchResult).name}</p>
-                                {(result as NameSearchResult).imgUrl !== "No Image Available" && <img src={(result as NameSearchResult).imgUrl} alt={(result as NameSearchResult).name} style={{ width: '100%' }} />}
+                                {(result as NameSearchResult).imgUrl !== "No Image Available" && <Image src={(result as NameSearchResult).imgUrl} alt={(result as NameSearchResult).name} width={200} height={200} />}
                                 <p>{(result as NameSearchResult).knownFor}</p>
                             </>
                         ) : (
                             <>
                                 <p>{(result as MovieSearchResult).title}</p>
-                                {(result as MovieSearchResult).imgUrl !== "No Image Available" && <img src={(result as MovieSearchResult).imgUrl} alt={(result as MovieSearchResult).title} style={{ width: '100%' }} />}
+                                {(result as MovieSearchResult).imgUrl !== "No Image Available" && <Image src={(result as MovieSearchResult).imgUrl} alt={(result as MovieSearchResult).title} width={200} height={200} />}
                                 <p>{(result as MovieSearchResult).releaseYear}</p>
                             </>
                         )}

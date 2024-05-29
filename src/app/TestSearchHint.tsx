@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function TestSearchHint(){
     const [userInput, SetUserInput]= useState([])
 
-    function handleSearchType(value){
+    function handleSearchType(value:string){
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())  
       .then((json) =>{
