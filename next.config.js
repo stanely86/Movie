@@ -1,17 +1,23 @@
 /** @type {import('next').NextConfig} */
 
-
-const stylexPlugin = require("@stylexjs/nextjs-plugin");
 const nextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx"],
-}
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'assets.example.com',
+        port: '',
+        pathname: '/account123/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'm.media-amazon.com',
+        port: '',
+        pathname: '/images/**',
+      },
+    ],
+  },
+};
 
-module.exports = stylexPlugin({
-  rootDir: __dirname,
-  presets: ["next/babel"],
-  plugins: ["@stylexjs/babel-plugin"],
-})(nextConfig);
-
-
-
-
+module.exports = nextConfig;
