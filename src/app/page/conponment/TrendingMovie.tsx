@@ -38,6 +38,7 @@ export default function TrendingMovie({ topMovie }: TrendingMovieProps) {
 
     return (
         <div className="p-4 flex justify-center items-center flex-col">
+            <h2 className='py-4 text-3xl'>Trending Movie</h2>
             {currentMovie && (
                 <div className={`flex items-start border-b pb-4 transition-all duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
                     <img src={currentMovie.imgUrl} width={200} height={200} alt={currentMovie.title} className="mr-4" />

@@ -33,7 +33,7 @@ export default function NewArrivals({ topMovie }: NewArrivalsProps) {
 
     return (
         <div className="p-4 flex justify-center items-center flex-col">
-            <h2>New Arrivals</h2>
+            <h2 className='py-4 text-3xl'>New Arrivals</h2>
             <div className="flex items-center mb-4">
                 <button onClick={handleCarouselPrev} className="p-2 border rounded bg-gray-300 mr-4">←</button>
                 <div className="flex space-x-4">
