@@ -1,9 +1,9 @@
 import React from 'react';
-import TestSearch from './TestSearch.client';
+import HomePage from './page/HomePage';
 
 function Home() {
   return (
-    <TestSearch />
+    <HomePage />
   );
 }
 
