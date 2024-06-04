@@ -1,20 +1,19 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import NavBar from './conponment/NavBar';
-import TrendingMovie from './conponment/TrendingMovie';
-import NewArrivals from './conponment/NewArrivals';
+import TrendingMovie from './components/TrendingMovie';
+import NewArrivals from './components/NewArrivals';
 
-interface TrendingMovie {
-    imgUrl: string;
-    title: string;
-    rating: number;
-    description: string;
-    genre: string[];
-    year: number;
-    country: string;
-}
+export default function HomePage() {
+    interface TrendingMovie {
+        imgUrl: string;
+        title: string;
+        rating: number;
+        description: string;
+        genre: string[];
+        year: number;
+        country: string;
+    }
 
-export default function App() {
     const [topMovie, setTopMovie] = useState<TrendingMovie[]>([]);
 
     useEffect(() => {
@@ -23,9 +22,9 @@ export default function App() {
             const options = {
                 method: 'GET',
                 headers: {
-                    'x-rapidapi-key': '87d4b5ab45mshe5e256ac4029f3bp11b320jsnd250a4fe1339',
-                    'x-rapidapi-host': 'imdb8.p.rapidapi.com'
-                }
+                    'X-RapidAPI-Key': '272c20de72msh7600bfac64d9ec4p10d181jsne0a2759f8116',
+		            'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+                  }
             };
 
             try {
@@ -65,7 +64,6 @@ export default function App() {
 
     return (
         <div>
-            <NavBar />
             <TrendingMovie topMovie={topMovie} />
             <NewArrivals topMovie={topMovie} />
         </div>

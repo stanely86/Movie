@@ -1,9 +1,9 @@
 import React from 'react';
-import HomePage from './page/HomePage';
+import TestSearch from './page/TestSearch';
 
 function Home() {
   return (
-    <HomePage />
+    <TestSearch />
   );
 }
 

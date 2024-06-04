@@ -1,7 +1,7 @@
 "use client";
-
 import React, { useState } from "react";
 import Image from 'next/image';
+import HomePage from './HomePage';
 
 interface NameSearchResult {
     name: string;
@@ -19,14 +19,15 @@ export default function TestSearch() {
     const [searchValue, setSearchValue] = useState("");
     const [searchType, setSearchType] = useState("NAME");
     const [searchResults, setSearchResults] = useState<(NameSearchResult | MovieSearchResult)[]>([]);
+    const [hasSearched, setHasSearched] = useState(false);
 
     async function search() {
         const url = `https://imdb8.p.rapidapi.com/v2/search?searchTerm=${searchValue}&type=${searchType}&first=10`;
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': '87d4b5ab45mshe5e256ac4029f3bp11b320jsnd250a4fe1339',
-                'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+                'X-RapidAPI-Key': '272c20de72msh7600bfac64d9ec4p10d181jsne0a2759f8116',
+		        'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
             }
         };
         try {
@@ -34,6 +35,7 @@ export default function TestSearch() {
             const result = await response.json();
             console.log(result);
             handleSearchResults(result);
+            setHasSearched(true);
         } catch (error) {
             console.error('Error fetching search results:', error);
         }
@@ -59,6 +61,7 @@ export default function TestSearch() {
 
     return (
         <div className='searchFunction'>
+            <h1 className='text-3xl text-center'>MovieBuff</h1>
             <div className='searchSection'>
                 <div>
                     <p>Type Something to search</p>
@@ -72,32 +75,38 @@ export default function TestSearch() {
                 <select
                     value={searchType}
                     onChange={(e) => setSearchType(e.target.value)}
-                    style={{ margin: '1rem', borderRadius: '0.5rem', padding: '0.5rem', color:"black" }}
+                    style={{ margin: '1rem', borderRadius: '0.5rem', padding: '0.5rem', color: 'black' }}
                 >
                     <option value="NAME">Actor</option>
                     <option value="MOVIE">Movie</option>
                 </select>
                 <button className="searchButton" onClick={search}>Search</button>
             </div>
-            <div className="searchResult" style={{ width: '95%', padding: '10px', display: 'flex', flexWrap: 'wrap' }}>
-                {searchResults.map((result, index) => (
-                    <div className="searchResultCard" key={index} style={{ margin: '10px', borderRadius: '5px', border: '3px solid white', width: '200px', textAlign: 'center' }}>
-                        {searchType === "NAME" ? (
-                            <>
-                                <p>{(result as NameSearchResult).name}</p>
-                                {(result as NameSearchResult).imgUrl !== "No Image Available" && <Image src={(result as NameSearchResult).imgUrl} alt={(result as NameSearchResult).name} width={200} height={200} />}
-                                <p>{(result as NameSearchResult).knownFor}</p>
-                            </>
-                        ) : (
-                            <>
-                                <p>{(result as MovieSearchResult).title}</p>
-                                {(result as MovieSearchResult).imgUrl !== "No Image Available" && <Image src={(result as MovieSearchResult).imgUrl} alt={(result as MovieSearchResult).title} width={200} height={200} />}
-                                <p>{(result as MovieSearchResult).releaseYear}</p>
-                            </>
-                        )}
-                    </div>
-                ))}
-            </div>
+
+            {hasSearched && searchResults.length > 0 ? (
+                <div className="searchResult" style={{ width: '95%', padding: '10px', display: 'flex', flexWrap: 'wrap' }}>
+                    {searchResults.map((result, index) => (
+                        <div className="searchResultCard" key={index} style={{ margin: '10px', borderRadius: '5px', border: '3px solid white', width: '200px', textAlign: 'center' }}>
+                            {searchType === "NAME" ? (
+                                <>
+                                    <p>{(result as NameSearchResult).name}</p>
+                                    {(result as NameSearchResult).imgUrl !== "No Image Available" && <Image src={(result as NameSearchResult).imgUrl} alt={(result as NameSearchResult).name} width={200} height={200} />}
+                                    <p>{(result as NameSearchResult).knownFor}</p>
+                                </>
+                            ) : (
+                                <>
+                                    <p>{(result as MovieSearchResult).title}</p>
+                                    {(result as MovieSearchResult).imgUrl !== "No Image Available" && <Image src={(result as MovieSearchResult).imgUrl} alt={(result as MovieSearchResult).title} width={200} height={200} />}
+                                    <p>{(result as MovieSearchResult).releaseYear}</p>
+                                </>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <HomePage />
+            )}
         </div>
     );
 }
+
