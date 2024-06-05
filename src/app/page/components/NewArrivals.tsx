@@ -1,12 +1,13 @@
+"use client";
 import React, { useState, forwardRef } from 'react';
 
 interface NewArrivalsProps {
     topMovie: TrendingMovie[];
-    cardClick: (id:string)=> void;
+    cardClick: (movieId: string) => void;
 }
 
 interface TrendingMovie {
-    id: string;
+    id:string
     imgUrl: string;
     title: string;
     rating: number;
@@ -16,9 +17,9 @@ interface TrendingMovie {
     country: string;
 }
 
-const NewArrivals =  forwardRef(function NewArrivals({ topMovie, cardClick }: NewArrivalsProps, ref) {
+const NewArrivals = forwardRef(function NewArrivals({ topMovie, cardClick }: NewArrivalsProps, ref) {
     const [carouselIndex, setCarouselIndex] = useState(0);
-    
+
     function handleCarouselPrev() {
         setCarouselIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : topMovie.length - 1));
     }
@@ -39,7 +40,7 @@ const NewArrivals =  forwardRef(function NewArrivals({ topMovie, cardClick }: Ne
                 <button onClick={handleCarouselPrev} className="p-2 border rounded bg-gray-300 mr-4">←</button>
                 <div className="flex space-x-4">
                     {displayedMovies.map((movie, index) => (
-                        <div onClick={ ()=>cardClick(movie.id)} key={index} className="cursor-pointer flex items-start border p-4 rounded transition-all duration-300">
+                        <div onClick={() => cardClick(movie.id)} key={index} className="cursor-pointer flex items-start border p-4 rounded transition-all duration-300">
                             <img src={movie.imgUrl} width={100} height={100} alt={movie.title} className="mr-4" />
                             <div className="flex flex-col">
                                 <h2 className="text-lg font-bold">{movie.title}</h2>
@@ -54,7 +55,6 @@ const NewArrivals =  forwardRef(function NewArrivals({ topMovie, cardClick }: Ne
             </div>
         </div>
     );
-}
-)
+});
 
-export default NewArrivals
+export default NewArrivals;

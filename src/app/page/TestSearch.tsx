@@ -21,8 +21,7 @@ export default function TestSearch() {
     const [searchType, setSearchType] = useState("NAME");
     const [searchResults, setSearchResults] = useState<(NameSearchResult | MovieSearchResult)[]>([]);
     const [hasSearched, setHasSearched] = useState(false);
-    const [hasClick, setClick] = useState(false);
-    const [movieId, setmovieId] = useState('');
+    const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
 
     async function search() {
         const url = `https://imdb8.p.rapidapi.com/v2/search?searchTerm=${searchValue}&type=${searchType}&first=10`;
@@ -30,7 +29,7 @@ export default function TestSearch() {
             method: 'GET',
             headers: {
                 'X-RapidAPI-Key': '272c20de72msh7600bfac64d9ec4p10d181jsne0a2759f8116',
-		        'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+                'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
             }
         };
         try {
@@ -61,18 +60,16 @@ export default function TestSearch() {
             setSearchResults(results);
         }
     }
-
-    function handleClick(id:string){
-        setmovieId(id)
-        setClick(true)
+    
+    function handleClick(movieId: string) {
+        setSelectedMovieId(movieId);
     }
 
     return (
         <div className='searchFunction'>
-
-            /*Seach Section*/
+            {/* Search Section */}
             <div className='searchSection'>
-            <h1 className='text-3xl text-center'>MovieBuff</h1>
+                <h1 className='text-3xl text-center'>MovieBuff</h1>
                 <div>
                     <p>Type Something to search</p>
                 </div>
@@ -93,7 +90,7 @@ export default function TestSearch() {
                 <button className="searchButton" onClick={search}>Search</button>
             </div>
 
-            /* Search | Home Page  */
+            {/* Search Results or Home Page */}
             {hasSearched && searchResults.length > 0 ? (
                 <div className="searchResult" style={{ width: '95%', padding: '10px', display: 'flex', flexWrap: 'wrap' }}>
                     {searchResults.map((result, index) => (
@@ -114,11 +111,11 @@ export default function TestSearch() {
                         </div>
                     ))}
                 </div>
-            ) : hasClick 
-                ?<DetailPage movieId={movieId} /> 
-                :<HomePage ref={movieId} cardClick={handleClick}/>
-            }
+            ) : selectedMovieId ? (
+                <DetailPage movieId={selectedMovieId} />
+            ) : (
+                <HomePage cardClick={handleClick} />
+            )}
         </div>
     );
 }
-

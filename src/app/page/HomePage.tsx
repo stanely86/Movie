@@ -1,14 +1,14 @@
 "use client";
-import React, { useState, useEffect,forwardRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import TrendingMovie from './components/TrendingMovie';
 import NewArrivals from './components/NewArrivals';
 
 interface HomePageProps {
-    cardClick: (id: string) => void;
+    cardClick: (movieId: string) => void;
 }
 
 interface TrendingMovie {
-    id: string;
+    id:string;
     imgUrl: string;
     title: string;
     rating: number;
@@ -18,8 +18,7 @@ interface TrendingMovie {
     country: string;
 }
 
-const HomePage = forwardRef(function HomePage({cardClick}:HomePageProps, ref) {
-
+export default function HomePage({ cardClick }: HomePageProps) {
     const [topMovie, setTopMovie] = useState<TrendingMovie[]>([]);
 
     useEffect(() => {
@@ -28,9 +27,9 @@ const HomePage = forwardRef(function HomePage({cardClick}:HomePageProps, ref) {
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': '272c20de72msh7600bfac64d9ec4p10d181jsne0a2759f8116',
-		            'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
-                  }
+                    'x-rapidapi-key': '272c20de72msh7600bfac64d9ec4p10d181jsne0a2759f8116',
+                    'x-rapidapi-host': 'imdb8.p.rapidapi.com'
+                }
             };
 
             try {
@@ -49,13 +48,14 @@ const HomePage = forwardRef(function HomePage({cardClick}:HomePageProps, ref) {
     function handleTrendResults(result: any) {
         const results: TrendingMovie[] = result.data.topTrendingTitles.edges.map((edge: any) => {
             const trailer = edge.node.item.latestTrailer;
+            const movieId = trailer.primaryTitle.id
             const titleGenres = trailer.primaryTitle.titleGenres?.genres || [];
             const releaseDate = trailer.primaryTitle.releaseDate || {};
             const country = releaseDate.country ? releaseDate.country.id : 'Unknown';
             const year = releaseDate.year || 'Unknown';
             
             return {
-                id:trailer.primaryTitle.id,
+                id : movieId,
                 imgUrl: trailer.primaryTitle.primaryImage.url,
                 title: trailer.primaryTitle.titleText.text,
                 rating: trailer.primaryTitle.ratingsSummary.aggregateRating,
@@ -70,12 +70,9 @@ const HomePage = forwardRef(function HomePage({cardClick}:HomePageProps, ref) {
     }
 
     return (
-        <div> topMovie.id
-            <TrendingMovie  cardClick={cardClick} topMovie={topMovie} />
-            <NewArrivals ref={ref} cardClick={cardClick} topMovie={topMovie} />
+        <div>
+            <TrendingMovie topMovie={topMovie} cardClick={cardClick} />
+            <NewArrivals topMovie={topMovie} cardClick={cardClick} />
         </div>
     );
 }
-) 
-
-export default HomePage
