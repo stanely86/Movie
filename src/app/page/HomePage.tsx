@@ -1,18 +1,24 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,forwardRef } from 'react';
 import TrendingMovie from './components/TrendingMovie';
 import NewArrivals from './components/NewArrivals';
 
-export default function HomePage() {
-    interface TrendingMovie {
-        imgUrl: string;
-        title: string;
-        rating: number;
-        description: string;
-        genre: string[];
-        year: number;
-        country: string;
-    }
+interface HomePageProps {
+    cardClick: (id: string) => void;
+}
+
+interface TrendingMovie {
+    id: string;
+    imgUrl: string;
+    title: string;
+    rating: number;
+    description: string;
+    genre: string[];
+    year: number;
+    country: string;
+}
+
+const HomePage = forwardRef(function HomePage({cardClick}:HomePageProps, ref) {
 
     const [topMovie, setTopMovie] = useState<TrendingMovie[]>([]);
 
@@ -49,6 +55,7 @@ export default function HomePage() {
             const year = releaseDate.year || 'Unknown';
             
             return {
+                id:trailer.primaryTitle.id,
                 imgUrl: trailer.primaryTitle.primaryImage.url,
                 title: trailer.primaryTitle.titleText.text,
                 rating: trailer.primaryTitle.ratingsSummary.aggregateRating,
@@ -63,9 +70,12 @@ export default function HomePage() {
     }
 
     return (
-        <div>
-            <TrendingMovie topMovie={topMovie} />
-            <NewArrivals topMovie={topMovie} />
+        <div> topMovie.id
+            <TrendingMovie  cardClick={cardClick} topMovie={topMovie} />
+            <NewArrivals ref={ref} cardClick={cardClick} topMovie={topMovie} />
         </div>
     );
 }
+) 
+
+export default HomePage

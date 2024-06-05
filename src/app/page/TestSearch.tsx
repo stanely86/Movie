@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from 'next/image';
 import HomePage from './HomePage';
+import DetailPage from "./DetailPage";
 
 interface NameSearchResult {
     name: string;
@@ -20,6 +21,8 @@ export default function TestSearch() {
     const [searchType, setSearchType] = useState("NAME");
     const [searchResults, setSearchResults] = useState<(NameSearchResult | MovieSearchResult)[]>([]);
     const [hasSearched, setHasSearched] = useState(false);
+    const [hasClick, setClick] = useState(false);
+    const [movieId, setmovieId] = useState('');
 
     async function search() {
         const url = `https://imdb8.p.rapidapi.com/v2/search?searchTerm=${searchValue}&type=${searchType}&first=10`;
@@ -59,10 +62,17 @@ export default function TestSearch() {
         }
     }
 
+    function handleClick(id:string){
+        setmovieId(id)
+        setClick(true)
+    }
+
     return (
         <div className='searchFunction'>
-            <h1 className='text-3xl text-center'>MovieBuff</h1>
+
+            /*Seach Section*/
             <div className='searchSection'>
+            <h1 className='text-3xl text-center'>MovieBuff</h1>
                 <div>
                     <p>Type Something to search</p>
                 </div>
@@ -83,6 +93,7 @@ export default function TestSearch() {
                 <button className="searchButton" onClick={search}>Search</button>
             </div>
 
+            /* Search | Home Page  */
             {hasSearched && searchResults.length > 0 ? (
                 <div className="searchResult" style={{ width: '95%', padding: '10px', display: 'flex', flexWrap: 'wrap' }}>
                     {searchResults.map((result, index) => (
@@ -103,9 +114,10 @@ export default function TestSearch() {
                         </div>
                     ))}
                 </div>
-            ) : (
-                <HomePage />
-            )}
+            ) : hasClick 
+                ?<DetailPage movieId={movieId} /> 
+                :<HomePage ref={movieId} cardClick={handleClick}/>
+            }
         </div>
     );
 }
