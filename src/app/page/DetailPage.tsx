@@ -71,13 +71,15 @@ export default function DetailPage({ movieId }: DetailPageProps) {
     }
 
     return (
-        <div className="p-4 flex justify-center items-center flex-col">
-            <img src={movieDetail.imgUrl} alt={movieDetail.title} width={200} height={200} />
-            <h1 className='text-3xl'>{movieDetail.title}</h1>
-            <p><strong>Rating:</strong> {movieDetail.rating}</p>
-            <p><strong>Rating Count:</strong> {movieDetail.ratingCount}</p>
-            <p><strong>Release Date:</strong> {movieDetail.releaseDate}</p>
-            <p><strong>Description:</strong> {movieDetail.description}</p>
-        </div>
+            <div className="w-2/3 p-4 flex justify-center">
+                <img src={movieDetail.imgUrl} className='w-1/4' alt={movieDetail.title} />
+                <div className='w-3/4 text-left'>
+                    <h1 className='text-3xl'>{movieDetail.title}</h1>
+                    <p><strong>Rating:</strong> {movieDetail.rating}</p>
+                    <p><strong>Rating Count:</strong> {movieDetail.ratingCount}</p>
+                    <p><strong>Release Date:</strong> {movieDetail.releaseDate}</p>
+                    <p><strong>Description:</strong> {movieDetail.description}</p>
+                </div>
+            </div>
     );
 }

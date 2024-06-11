@@ -37,10 +37,10 @@ const NewArrivals = forwardRef(function NewArrivals({ topMovie, cardClick }: New
         <div className="p-4 flex justify-center items-center flex-col">
             <h2 className='py-4 text-3xl'>New Arrivals</h2>
             <div className="flex items-center mb-4">
-                <button onClick={handleCarouselPrev} className="p-2 border rounded bg-gray-300 mr-4">←</button>
+                <button onClick={handleCarouselPrev} className="p-2 border rounded bg-none mr-4 transition-all duration-500 hover:bg-pink-950">←</button>
                 <div className="flex space-x-4">
                     {displayedMovies.map((movie, index) => (
-                        <div onClick={() => cardClick(movie.id)} key={index} className="cursor-pointer flex items-start border p-4 rounded transition-all duration-300">
+                        <div onClick={() => cardClick(movie.id)} key={index} className="text-left w-1/4 cursor-pointer flex items-start border p-4 rounded transition-all duration-300 hover:bg-pink-950">
                             <img src={movie.imgUrl} width={100} height={100} alt={movie.title} className="mr-4" />
                             <div className="flex flex-col">
                                 <h2 className="text-lg font-bold">{movie.title}</h2>
@@ -51,7 +51,7 @@ const NewArrivals = forwardRef(function NewArrivals({ topMovie, cardClick }: New
                         </div>
                     ))}
                 </div>
-                <button onClick={handleCarouselNext} className="p-2 border rounded bg-gray-300 ml-4">→</button>
+                <button onClick={handleCarouselNext} className="p-2 border rounded bg-none ml-4 hover:bg-pink-950 transition-all duration-500">→</button>
             </div>
         </div>
     );

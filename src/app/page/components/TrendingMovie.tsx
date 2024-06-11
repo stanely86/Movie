@@ -40,6 +40,7 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
 
     return (
         <div 
+            className='size-full transition-all duration-500'
             style={currentMovie && {
             backgroundImage: `url(${currentMovie.imgUrl})`,
             backgroundSize: 'cover',
@@ -54,21 +55,22 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
                 opacity: 1,
                 position: 'relative',
                 }}
-                className="backdrop-blur-sm p-4 flex justify-center items-center flex-col bg-none">
+                className="backdrop-blur-ssm p-4 flex justify-center items-center flex-col bg-none"
+            >
                 <h2 className='py-4 text-3xl'>Trending Movie</h2>
                 {currentMovie && (
-                    <div className={`flex items-start border-b pb-4 transition-all duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
-                        <img src={currentMovie.imgUrl} width={200} height={200} alt={currentMovie.title} className="mr-4" />
-                        <div className="flex flex-col">
+                    <div className={`w-1/2 flex pb-4 transition-all duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+                        <img src={currentMovie.imgUrl} width={200} height={200} alt={currentMovie.title} className="rounded-lg w-1/3 mr-4" />
+                        <div className="w-7/15 gap-4 flex flex-col text-left ">
                             <h2 className="text-xl font-bold">{currentMovie.title}</h2>
                             <p><strong>Rating:</strong> {currentMovie.rating}</p>
                             <p><strong>Description:</strong> {currentMovie.description}</p>
                             <p><strong>Genre:</strong> {currentMovie.genre.join(", ")}</p>
-                            <button className='content-center p-4 text-center w-1/4 duration-500 bg-slate-900 hover:bg-slate-700' onClick={()=>cardClick(currentMovie.id)}>More Detail</button>
+                            <button className='rounded-lg content-center p-4 text-center w-1/2 duration-500 bg-pink-950 hover:bg-pink-700' onClick={()=>cardClick(currentMovie.id)}>More Detail</button>
                         </div>
-                        <div className="flex flex-col ml-4">
-                            <button onClick={handlePrev} className="p-2 border rounded bg-gray-300 mb-2">↑</button>
-                            <button onClick={handleNext} className="p-2 border rounded bg-gray-300">↓</button>
+                        <div className="w-1/5 flex justify-between flex-col space-y-4 ml-4">
+                            <button onClick={handlePrev} className="p-2 border rounded bg-none mb-4 transition-all duration-500 hover:bg-pink-950">↑</button>
+                            <button onClick={handleNext} className="p-2 border rounded bg-none transition-all duration-500 hover:bg-pink-950">↓</button>
                         </div>
                     </div>
                 )}
