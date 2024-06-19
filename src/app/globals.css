@@ -24,30 +24,58 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    button:hover{
+      background-color: rgb(245, 152, 167);
+    }
 }
 
-.searchFunction{
+/* Custom CSS */
+@media (max-width: 640px) {
+  .new-arrivals .displayed-movie {
+    flex: 0 0 calc(50% - 0.5rem); /* Display 2 items in phone mode */
+  }
+}
+
+@media (min-width: 641px) {
+  .new-arrivals .displayed-movie {
+    flex: 0 0 calc(25% - 1rem); /* Display 4 items in larger screens */
+  }
+}
+
+@media (max-width: 1199px) {
+  .new-arrivals .displayed-movie {
+    flex-direction: column; /* Display image on top and info below for smaller screens */
+  }
+}
+
+@media (min-width: 1200px) {
+  .new-arrivals .displayed-movie {
+    flex-direction: row; /* Display image on left and info on right for larger screens */
+  }
+}
+
+.searchFunction {
   margin-top: 3rem;
   text-align: center;
 }
 
-.searchResultCard{
+.searchResultCard {
   transition: 0.5s ease-in-out;
 }
 
-.searchResultCard:hover{
-  transform:scale(1.2)
+.searchResultCard:hover {
+  transform: scale(1.2);
 }
 
-.searchButton{
+.searchButton {
   transition: 0.3s ease-in-out;
-  background-color :rgba(255, 255, 255, 0.233);
-  color:rgb(255, 255, 255);
-  padding:0.5rem; 
-  border-radius:0.5rem;
+  background-color: rgba(255, 255, 255, 0.233);
+  color: rgb(255, 255, 255);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
-.searchButton:hover{
+.searchButton:hover {
   background-color: rgb(155, 0, 0);
 }
 

@@ -3,49 +3,39 @@ import React, { useState } from "react";
 import Image from 'next/image';
 import HomePage from './HomePage';
 import DetailPage from "./DetailPage";
+import NavBar from "./components/NavBar";
 
 interface NameSearchResult {
+    id:string;
     name: string;
     imgUrl: string;
     knownFor: string;
 }
 
 interface MovieSearchResult {
+    id:string;
     title: string;
     imgUrl: string;
     releaseYear: string;
 }
 
 export default function TestSearch() {
-    const [searchValue, setSearchValue] = useState("");
+    
     const [searchType, setSearchType] = useState("NAME");
     const [searchResults, setSearchResults] = useState<(NameSearchResult | MovieSearchResult)[]>([]);
     const [hasSearched, setHasSearched] = useState(false);
     const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
 
-    async function search() {
-        const url = `https://imdb8.p.rapidapi.com/v2/search?searchTerm=${searchValue}&type=${searchType}&first=10`;
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': '272c20de72msh7600bfac64d9ec4p10d181jsne0a2759f8116',
-                'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
-            }
-        };
-        try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            console.log(result);
-            handleSearchResults(result);
-            setHasSearched(true);
-        } catch (error) {
-            console.error('Error fetching search results:', error);
-        }
+    function reset() {
+        setHasSearched(false);
+        setSearchResults([]);
+        setSelectedMovieId(null);
     }
 
     function handleSearchResults(result: any) {
         if (searchType === "NAME") {
             const results: NameSearchResult[] = result.data.mainSearch.edges.map((edge: any) => ({
+                id:"No Name Available",
                 name: edge.node.entity.nameText.text,
                 imgUrl: edge.node.entity.primaryImage?.url || "No Image Available",
                 knownFor: edge.node.entity.knownFor.edges[0]?.node.credit.category.text || "Unknown"
@@ -53,6 +43,7 @@ export default function TestSearch() {
             setSearchResults(results);
         } else if (searchType === "MOVIE") {
             const results: MovieSearchResult[] = result.data.mainSearch.edges.map((edge: any) => ({
+                id:edge.node.entity.id,
                 title: edge.node.entity.titleText.text,
                 imgUrl: edge.node.entity.primaryImage?.url || "No Image Available",
                 releaseYear: edge.node.entity.releaseYear?.year || "Unknown"
@@ -65,36 +56,27 @@ export default function TestSearch() {
         setSelectedMovieId(movieId);
     }
 
+    function resultToDetail(movieId: string){
+        setSearchResults([]);
+        handleClick(movieId);
+    }
+
     return (
         <div className='searchFunction'>
             {/* Search Section */}
-            <div className='searchSection'>
-                <h1 className='text-3xl text-center'>MovieBuff</h1>
-                <div>
-                    <p>Type Something to search</p>
-                </div>
-                <input
-                    className='searchValue'
-                    style={{ color: 'black', margin: '1rem', borderRadius: '0.5rem', padding: '0.5rem' }}
-                    value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                />
-                <select
-                    value={searchType}
-                    onChange={(e) => setSearchType(e.target.value)}
-                    style={{ margin: '1rem', borderRadius: '0.5rem', padding: '0.5rem', color: 'black' }}
-                >
-                    <option value="NAME">Actor</option>
-                    <option value="MOVIE">Movie</option>
-                </select>
-                <button className="searchButton" onClick={search}>Search</button>
-            </div>
+            <NavBar
+                reset={reset}
+                setHasSearched = {setHasSearched} 
+                setSearchType={setSearchType}
+                handleSearchResults={handleSearchResults}
+                searchType={searchType}
+            />
 
             {/* Search Results or Home Page */}
             {hasSearched && searchResults.length > 0 ? (
                 <div className="searchResult" style={{ width: '95%', padding: '10px', display: 'flex', flexWrap: 'wrap' }}>
                     {searchResults.map((result, index) => (
-                        <div className="searchResultCard" key={index} style={{ margin: '10px', borderRadius: '5px', border: '3px solid white', width: '200px', textAlign: 'center' }}>
+                        <div onClick={()=>resultToDetail(result.id)} className="searchResultCard cursor-pointer" key={index} style={{ margin: '10px', borderRadius: '5px', border: '3px solid white', width: '200px', textAlign: 'center' }}>
                             {searchType === "NAME" ? (
                                 <>
                                     <p>{(result as NameSearchResult).name}</p>
