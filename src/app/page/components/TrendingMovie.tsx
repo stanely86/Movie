@@ -19,11 +19,23 @@ interface TrendingMovie {
 export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const currentMovie = topMovie[currentIndex];
-    const containerRef = useRef<HTMLDivElement | null>(null);
     const touchStartX = useRef<number | null>(null);
     const touchEndX = useRef<number | null>(null);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 700);
+        };
+        
+        // Set initial value
+        handleResize();
+        
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     function handlePrev() {
         setIsAnimating(true);
@@ -72,7 +84,6 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
 
     return (
         <div
-            ref={containerRef}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -113,26 +124,40 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
                                 <button
                                     className="rounded-lg content-center p-4 text-center duration-500 bg-pink-950 hover:bg-pink-700"
                                     onClick={() => cardClick(currentMovie.id)}
+                                    aria-label={`More details about ${currentMovie.title}`}
                                 >
                                     More Detail
                                 </button>
                             </div>
-                            {window.innerWidth > 700 && (
+                            {!isMobile && (
                                 <div className="flex flex-col space-y-4 ml-4">
-                                    <button onClick={handlePrev} className="p-2 border rounded bg-none mb-4 transition-all duration-500 hover:bg-pink-950">↑</button>
-                                    <button onClick={handleNext} className="p-2 border rounded bg-none transition-all duration-500 hover:bg-pink-950">↓</button>
+                                    <button
+                                        onClick={handlePrev}
+                                        className="p-2 border rounded bg-none mb-4 transition-all duration-500 hover:bg-pink-950"
+                                        aria-label="Previous movie"
+                                    >
+                                        ↑
+                                    </button>
+                                    <button
+                                        onClick={handleNext}
+                                        className="p-2 border rounded bg-none transition-all duration-500 hover:bg-pink-950"
+                                        aria-label="Next movie"
+                                    >
+                                        ↓
+                                    </button>
                                 </div>
                             )}
                         </div>
                     </div>
                 )}
-                {window.innerWidth <= 700 && (
+                {isMobile && (
                     <div className="w-full flex justify-center mt-4 flex-wrap">
                         {topMovie.map((movie, index) => (
                             <button
                                 key={movie.id}
                                 onClick={() => handleSelectMovie(index)}
                                 className={`p-2 mx-1 mb-2 border rounded ${index === currentIndex ? 'bg-pink-700 text-white' : 'bg-none'} transition-all duration-500 hover:bg-pink-950`}
+                                aria-label={`Select movie ${movie.title}`}
                             >
                                 {index + 1}
                             </button>

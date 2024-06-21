@@ -1,4 +1,5 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+"use client";
+import React, { useState, forwardRef } from 'react';
 
 interface NewArrivalsProps {
     topMovie: TrendingMovie[];
@@ -18,14 +19,6 @@ interface TrendingMovie {
 
 const NewArrivals = forwardRef(function NewArrivals({ topMovie, cardClick }: NewArrivalsProps, ref) {
     const [carouselIndex, setCarouselIndex] = useState(0);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1000); // Simulate a loading time of 1 second
-        return () => clearTimeout(timer);
-    }, []);
 
     function handleCarouselPrev() {
         setCarouselIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : topMovie.length - 1));
@@ -42,32 +35,28 @@ const NewArrivals = forwardRef(function NewArrivals({ topMovie, cardClick }: New
 
     return (
         <div className="p-4 flex justify-center items-center flex-col">
-            <h2 className="py-4 text-3xl">New Arrivals</h2>
-            {isLoading ? (
-                <div className="loading-spinner">Loading...</div>
-            ) : (
-                <div className="flex items-center mb-4">
-                    <button onClick={handleCarouselPrev} className="p-2 border rounded bg-none mr-4 transition-all duration-500 hover:bg-pink-950">←</button>
-                    <div className="flex space-x-4">
-                        {displayedMovies.map((movie, index) => (
-                            <div
-                                onClick={() => cardClick(movie.id)}
-                                key={index}
-                                className="text-left w-full sm:w-1/2 md:w-1/4 cursor-pointer flex flex-col items-start border p-4 rounded transition-all duration-300 hover:bg-pink-950"
-                            >
-                                <img src={movie.imgUrl} alt={movie.title} className="mb-4 w-full object-cover" />
-                                <div className="flex flex-col">
-                                    <h2 className="text-lg font-bold">{movie.title}</h2>
-                                    <p><strong>Year and Location:</strong> {movie.country}, {movie.year}</p>
-                                    <p><strong>Rating:</strong> {movie.rating}</p>
-                                    <p><strong>Genre:</strong> {movie.genre.join(", ")}</p>
-                                </div>
+            <h2 className='py-4 text-2xl sm:text-3xl'>New Arrivals</h2>
+            <div className="flex items-center mb-4 w-full">
+                <button onClick={handleCarouselPrev} className="p-2 border rounded bg-none mr-2 sm:mr-4 transition-all duration-500 hover:bg-pink-950">←</button>
+                <div className="flex overflow-x-auto space-x-4 w-full justify-center">
+                    {displayedMovies.map((movie, index) => (
+                        <div 
+                            onClick={() => cardClick(movie.id)} 
+                            key={index} 
+                            className="text-left w-48 sm:w-1/4 cursor-pointer flex flex-col items-center border p-2 sm:p-4 rounded transition-all duration-300 hover:bg-pink-950"
+                        >
+                            <img src={movie.imgUrl} alt={movie.title} className="w-full object-cover rounded mb-2" style={{ maxHeight: '150px' }} />
+                            <div className="flex flex-col w-full text-center">
+                                <h2 className="text-sm sm:text-lg font-bold">{movie.title}</h2>
+                                <p className="text-xs sm:text-sm"><strong>Year and Location:</strong> {movie.country}, {movie.year}</p>
+                                <p className="text-xs sm:text-sm"><strong>Rating:</strong> {movie.rating}</p>
+                                <p className="text-xs sm:text-sm"><strong>Genre:</strong> {movie.genre.join(", ")}</p>
                             </div>
-                        ))}
-                    </div>
-                    <button onClick={handleCarouselNext} className="p-2 border rounded bg-none ml-4 transition-all duration-500 hover:bg-pink-950">→</button>
+                        </div>
+                    ))}
                 </div>
-            )}
+                <button onClick={handleCarouselNext} className="p-2 border rounded bg-none ml-2 sm:ml-4 hover:bg-pink-950 transition-all duration-500">→</button>
+            </div>
         </div>
     );
 });
