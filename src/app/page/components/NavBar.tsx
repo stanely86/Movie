@@ -34,7 +34,7 @@ export default function NavBar({setHasSearched, handleSearchResults, searchType,
     }
 
     return(
-        <div className='searchSection'>
+        <div className='p-4 text-center bg-red-950/50 searchSection'>
                 <h1 onClick={reset}  className='hover:text-pink-700 text-3xl text-center cursor-pointer'>MovieBuff</h1>
                 <div>
                     <p>Type Something to search</p>

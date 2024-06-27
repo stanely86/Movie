@@ -62,7 +62,7 @@ export default function TestSearch() {
     }
 
     return (
-        <div className='searchFunction'>
+        <>
             {/* Search Section */}
             <NavBar
                 reset={reset}
@@ -74,7 +74,7 @@ export default function TestSearch() {
 
             {/* Search Results or Home Page */}
             {hasSearched && searchResults.length > 0 ? (
-                <div className="searchResult" style={{ width: '95%', padding: '10px', display: 'flex', flexWrap: 'wrap' }}>
+                <div className="searchResult gap-10 justify-center" style={{width: '100%', padding: '10px', display: 'flex', flexWrap: 'wrap' }}>
                     {searchResults.map((result, index) => (
                         <div onClick={()=>resultToDetail(result.id)} className="searchResultCard cursor-pointer" key={index} style={{ margin: '10px', borderRadius: '5px', border: '3px solid white', width: '200px', textAlign: 'center' }}>
                             {searchType === "NAME" ? (
@@ -98,6 +98,6 @@ export default function TestSearch() {
             ) : (
                 <HomePage cardClick={handleClick} />
             )}
-        </div>
+        </>
     );
 }

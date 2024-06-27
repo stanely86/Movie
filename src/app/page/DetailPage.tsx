@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from 'react';
 
 interface DetailPageProps {
@@ -19,12 +18,14 @@ interface Comment {
     text: string;
 }
 
-export default function DetailPage({ movieId }: DetailPageProps) {
+const DetailPage: React.FC<DetailPageProps> = ({ movieId }) => {
     const [movieDetail, setMovieDetail] = useState<MovieDetail | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [comments, setComments] = useState<Comment[]>([]);
     const [commentInput, setCommentInput] = useState<string>('');
     const [isCommenting, setIsCommenting] = useState<boolean>(false);
+    const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
+    const [editedCommentText, setEditedCommentText] = useState<string>('');
 
     useEffect(() => {
         async function fetchMovieDetails() {
@@ -39,16 +40,13 @@ export default function DetailPage({ movieId }: DetailPageProps) {
 
             try {
                 const response = await fetch(url, options);
-                
-                // Check if response is OK (status code 200)
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
                 const result = await response.json();
-                console.log(result);
 
-                // Ensure the response structure is as expected
                 if (result && result.data && result.data.title) {
                     const movieData = {
                         title: result.data.title.titleText.text,
@@ -76,14 +74,40 @@ export default function DetailPage({ movieId }: DetailPageProps) {
     };
 
     const handleSaveComment = () => {
-        setComments([...comments, { id: comments.length + 1, text: commentInput }]);
-        setCommentInput('');
-        setIsCommenting(false);
+        if (commentInput.trim() !== '') {
+            setComments([...comments, { id: comments.length + 1, text: commentInput }]);
+            setCommentInput('');
+            setIsCommenting(false);
+        }
     };
 
     const handleCancelComment = () => {
         setCommentInput('');
         setIsCommenting(false);
+        setEditingCommentId(null);
+        setEditedCommentText('');
+    };
+
+    const handleEditComment = (id: number) => {
+        const commentToEdit = comments.find(comment => comment.id === id);
+        if (commentToEdit) {
+            setEditingCommentId(id);
+            setEditedCommentText(commentToEdit.text);
+        }
+    };
+
+    const handleSaveEditedComment = () => {
+        if (editedCommentText.trim() !== '') {
+            setComments(comments.map(comment => 
+                comment.id === editingCommentId ? { ...comment, text: editedCommentText } : comment
+            ));
+            setEditingCommentId(null);
+            setEditedCommentText('');
+        }
+    };
+
+    const handleDeleteComment = (id: number) => {
+        setComments(comments.filter(comment => comment.id !== id));
     };
 
     if (error) {
@@ -128,8 +152,30 @@ export default function DetailPage({ movieId }: DetailPageProps) {
                     )}
                     <div className="comment-list mt-4">
                         {comments.map((comment) => (
-                            <div key={comment.id} className="p-2 border-b border-gray-300">
-                                <p>{comment.text}</p>
+                            <div key={comment.id} className="p-2 border-b border-gray-300 flex justify-between items-center">
+                                {editingCommentId === comment.id ? (
+                                    <textarea
+                                        value={editedCommentText}
+                                        onChange={(e) => setEditedCommentText(e.target.value)}
+                                        className="w-full p-2 border border-gray-300 rounded text-stone-950"
+                                        rows={4}
+                                    />
+                                ) : (
+                                    <p>{comment.text}</p>
+                                )}
+                                <div>
+                                    {editingCommentId === comment.id ? (
+                                        <div className="flex">
+                                            <button onClick={handleSaveEditedComment} className="px-3 py-1 bg-blue-500 text-white rounded mr-2">Save</button>
+                                            <button onClick={handleCancelComment} className="px-3 py-1 bg-gray-500 text-white rounded">Cancel</button>
+                                        </div>
+                                    ) : (
+                                        <div className="flex">
+                                            <button onClick={() => handleEditComment(comment.id)} className="px-3 py-1 bg-yellow-500 text-white rounded mr-2">Edit</button>
+                                            <button onClick={() => handleDeleteComment(comment.id)} className="px-3 py-1 bg-red-500 text-white rounded">Delete</button>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -137,4 +183,6 @@ export default function DetailPage({ movieId }: DetailPageProps) {
             </div>
         </div>
     );
-}
+};
+
+export default DetailPage;
