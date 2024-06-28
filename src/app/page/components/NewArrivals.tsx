@@ -61,13 +61,13 @@ const NewArrivals: React.FC<NewArrivalsProps> = ({ topMovie, cardClick }) => {
             <h2 className='py-4 text-2xl sm:text-3xl'>New Arrivals</h2>
             <div className="flex items-center mb-4 w-full">
                 <button onClick={handleCarouselPrev} className="p-2 border rounded bg-none mr-2 sm:mr-4 transition-all duration-500 hover:bg-pink-950">←</button>
-                <div className="relative w-full overflow-hidden">
-                    <div className={`flex w-full`}>
+                <div className="relative w-full overflow-hidden place-content-center min-h-96">
+                    <div className={`gap-4 flex justify-around w-full`}>
                         {displayedMovies.map((movie, index) => (
                             <div
                                 onClick={() => cardClick(movie.id)}
                                 key={index}
-                                className={`text-left w-1/2 sm:w-1/4 cursor-pointer flex-shrink-0 flex flex-col items-center border p-2 sm:p-4 rounded transition-all duration-500
+                                className={`mt-4 shadow-lg shadow-pink-950 hover:shadow-pink-700 text-left h-2/3 w-1/2 sm:w-1/5 cursor-pointer flex-shrink-0 sm:p-4 rounded transition-all duration-500
                                 ${isTransitioning && direction === 'next' && index === 0 ? 'fade-out-left' : ''}
                                 ${isTransitioning && direction === 'next' && index > 0 ? 'move-left' : ''}
                                 ${isTransitioning && direction === 'prev' && index === displayedMovies.length - 1 ? 'fade-out-right' : ''}

@@ -34,26 +34,33 @@ export default function NavBar({setHasSearched, handleSearchResults, searchType,
     }
 
     return(
-        <div className='p-4 text-center bg-red-950/50 searchSection'>
-                <h1 onClick={reset}  className='hover:text-pink-700 text-3xl text-center cursor-pointer'>MovieBuff</h1>
-                <div>
-                    <p>Type Something to search</p>
-                </div>
+        <div className='flex items-center p-4 text-center bg-pink-950'>
+                <h1 onClick={reset}  
+                    className='w-1/2 hover-text-shadow  text-3xl text-center cursor-pointer'
+                >
+                MovieBuff</h1>
+
                 <input
-                    className='searchValue'
+                    className='w-1/6 searchValue bg-white/30'
                     style={{ color: 'black', margin: '1rem', borderRadius: '0.5rem', padding: '0.5rem' }}
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                 />
+                <button 
+                    className="searchButton h-1/2 " 
+                    onClick={search}>
+                🔎Search</button>
+
                 <select
+                    className="bg-white/30"
                     value={searchType}
                     onChange={(e) => setSearchType(e.target.value)}
-                    style={{ margin: '1rem', borderRadius: '0.5rem', padding: '0.5rem', color: 'black' }}
+                    style={{margin: '1rem', borderRadius: '0.5rem', padding: '0.5rem'}}
                 >
-                    <option value="NAME">Actor</option>
-                    <option value="MOVIE">Movie</option>
+                    <option className="bg-white/30" value="NAME ">Actor</option>
+                    <option className="bg-white/30" value="MOVIE">Movie</option>
                 </select>
-                <button className="searchButton" onClick={search}>Search</button>
-            </div>
+                
+        </div>
     )
 }
