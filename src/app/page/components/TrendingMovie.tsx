@@ -54,12 +54,25 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
     }
 
     function handleSelectMovie(index: number) {
-        setIsAnimating(true);
-        setTimeout(() => {
-            setCurrentIndex(index);
-            setIsAnimating(false);
-        }, 300);
+        if (index !== currentIndex) {
+            setIsAnimating(true);
+            const startIndex = currentIndex;
+            const direction = index > currentIndex ? 1 : -1;
+            const interval = setInterval(() => {
+                setCurrentIndex(prevIndex => {
+                    const nextIndex = prevIndex + direction;
+                    if ((direction === 1 && nextIndex > index) || (direction === -1 && nextIndex < index)) {
+                        setIsAnimating(false);
+                        clearInterval(interval);
+                        return index;
+                    }
+                    return nextIndex;
+                });
+            }, 100);
+        }
     }
+    
+    
 
     function handleTouchStart(event: React.TouchEvent) {
         touchStartX.current = event.touches[0].clientX;
@@ -105,7 +118,6 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
                 }}
                 className="backdrop-blur-ssm p-4 flex flex-col justify-center items-center bg-none"
             >
-                <h2 className="py-4 text-2xl sm:text-3xl">Trending Movie</h2>
                 {currentMovie && (
                     <div
                         className={`w-full sm:w-2/3 md:w-1/2 pb-4 transition-all duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
@@ -131,20 +143,16 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
                             </div>
                             {!isMobile && (
                                 <div className="flex flex-col space-y-4 ml-4">
-                                    <button
-                                        onClick={handlePrev}
-                                        className="p-2 border rounded bg-none mb-4 transition-all duration-500 hover:bg-pink-950"
-                                        aria-label="Previous movie"
-                                    >
-                                        ↑
-                                    </button>
-                                    <button
-                                        onClick={handleNext}
-                                        className="p-2 border rounded bg-none transition-all duration-500 hover:bg-pink-950"
-                                        aria-label="Next movie"
-                                    >
-                                        ↓
-                                    </button>
+                                    {topMovie.map((movie, index) => (
+                                        <button
+                                            key={movie.id}
+                                            onClick={() => handleSelectMovie(index)}
+                                            className={`p-2 border rounded ${index === currentIndex ? 'bg-pink-700 text-white' : 'bg-none'} transition-all duration-500 hover:bg-pink-950`}
+                                            aria-label={`Select movie ${movie.title}`}
+                                        >
+                                            {index + 1}
+                                        </button>
+                                    ))}
                                 </div>
                             )}
                         </div>

@@ -47,8 +47,8 @@ export default function NavBar({ setHasSearched, handleSearchResults, searchType
     }, []);
 
     return (
-        <div className='flex items-center p-4 text-center bg-pink-950 relative'>
-            <h1 onClick={reset} className='w-1/2 hover-text-shadow text-3xl text-center cursor-pointer'>
+        <div className='w-full flex justify-between sm:justify-normal items-center p-4 text-center bg-pink-950 relative'>
+            <h1 onClick={reset} className='sm:w-1/2 hover-text-shadow text-3xl text-center cursor-pointer'>
                 MovieBuff
             </h1>
 
@@ -65,7 +65,7 @@ export default function NavBar({ setHasSearched, handleSearchResults, searchType
             </button>
 
             <select
-                className="bg-white/30 hidden md:inline-block"
+                className="bg-white/30 hidden md:inline-block searchButton"
                 value={searchType}
                 onChange={(e) => setSearchType(e.target.value)}
                 style={{ margin: '1rem', borderRadius: '0.5rem', padding: '0.5rem' }}
@@ -75,7 +75,7 @@ export default function NavBar({ setHasSearched, handleSearchResults, searchType
             </select>
 
             <button
-                className="searchButton h-1/2 md:hidden"
+                className="items-end searchButton h-1/2 md:hidden "
                 onClick={() => setIsSearching(true)}>
                 🔎Search
             </button>
