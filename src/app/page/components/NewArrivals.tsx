@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect } from 'react';
 
 interface NewArrivalsProps {
@@ -57,35 +56,41 @@ const NewArrivals: React.FC<NewArrivalsProps> = ({ topMovie, cardClick }) => {
     }
 
     return (
-        <div className="p-4 flex justify-center items-center flex-col">
+        <div className="p-4 flex flex-col items-center">
             <h2 className='py-4 text-2xl sm:text-3xl'>New Arrivals</h2>
-            <div className="flex items-center mb-4 w-full">
-                <button onClick={handleCarouselPrev} className="p-2 border rounded bg-none mr-2 sm:mr-4 transition-all duration-500 hover:bg-pink-950">←</button>
-                <div className="relative w-full overflow-hidden place-content-center min-h-96">
-                    <div className={`gap-4 flex justify-around w-full`}>
-                        {displayedMovies.map((movie, index) => (
-                            <div
-                                onClick={() => cardClick(movie.id)}
-                                key={index}
-                                className={`mt-4 shadow-lg shadow-pink-950 hover:shadow-pink-700 text-left h-2/3 w-1/2 sm:w-1/5 cursor-pointer flex-shrink-0 sm:p-4 rounded transition-all duration-500
-                                ${isTransitioning && direction === 'next' && index === 0 ? 'fade-out-left' : ''}
-                                ${isTransitioning && direction === 'next' && index > 0 ? 'move-left' : ''}
-                                ${isTransitioning && direction === 'prev' && index === displayedMovies.length - 1 ? 'fade-out-right' : ''}
-                                ${isTransitioning && direction === 'prev' && index < displayedMovies.length - 1 ? 'move-right' : ''}
-                                ${newMovieIndex === index ? 'slide-in' : ''}`}
-                            >
-                                <img src={movie.imgUrl} alt={movie.title} className="w-full object-cover rounded mb-2" style={{ maxHeight: '150px' }} />
-                                <div className="flex flex-col w-full text-center">
-                                    <h2 className="text-sm sm:text-lg font-bold">{movie.title}</h2>
-                                    <p className="text-xs sm:text-sm"><strong>Year and Location:</strong> {movie.country}, {movie.year}</p>
-                                    <p className="text-xs sm:text-sm"><strong>Rating:</strong> {movie.rating}</p>
-                                    <p className="text-xs sm:text-sm"><strong>Genre:</strong> {movie.genre.join(", ")}</p>
-                                </div>
+            <div className="flex items-center mb-4 w-full overflow-x-auto relative">
+                {displayedMovies.length > 0 && (
+                    <button onClick={handleCarouselPrev} className="p-2 border rounded bg-none absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full sm:-translate-x-0 sm:ml-4 transition-all duration-500 hover:bg-pink-950">
+                        ←
+                    </button>
+                )}
+                <div className="flex space-x-4 min-w-full">
+                    {displayedMovies.map((movie, index) => (
+                        <div
+                            onClick={() => cardClick(movie.id)}
+                            key={index}
+                            className={`mt-4 shadow-lg shadow-pink-950 hover:shadow-pink-700 text-left h-2/3 sm:w-1/5 cursor-pointer flex-shrink-0 sm:p-4 rounded transition-all duration-500
+                            ${isTransitioning && direction === 'next' && index === 0 ? 'fade-out-left' : ''}
+                            ${isTransitioning && direction === 'next' && index > 0 ? 'move-left' : ''}
+                            ${isTransitioning && direction === 'prev' && index === displayedMovies.length - 1 ? 'fade-out-right' : ''}
+                            ${isTransitioning && direction === 'prev' && index < displayedMovies.length - 1 ? 'move-right' : ''}
+                            ${newMovieIndex === index ? 'slide-in' : ''}`}
+                        >
+                            <img src={movie.imgUrl} alt={movie.title} className="w-full object-cover rounded mb-2" style={{ maxHeight: '150px' }} />
+                            <div className="flex flex-col w-full text-center">
+                                <h2 className="text-sm sm:text-lg font-bold">{movie.title}</h2>
+                                <p className="text-xs sm:text-sm"><strong>Year and Location:</strong> {movie.country}, {movie.year}</p>
+                                <p className="text-xs sm:text-sm"><strong>Rating:</strong> {movie.rating}</p>
+                                <p className="text-xs sm:text-sm"><strong>Genre:</strong> {movie.genre.join(", ")}</p>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
-                <button onClick={handleCarouselNext} className="p-2 border rounded bg-none ml-2 sm:ml-4 hover:bg-pink-950 transition-all duration-500">→</button>
+                {displayedMovies.length > 0 && (
+                    <button onClick={handleCarouselNext} className="p-2 border rounded bg-none absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-full sm:translate-x-0 sm:mr-4 hover:bg-pink-950 transition-all duration-500">
+                        →
+                    </button>
+                )}
             </div>
             <style jsx>{`
                 .fade-out-left {

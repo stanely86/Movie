@@ -98,7 +98,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ movieId }) => {
 
     const handleSaveEditedComment = () => {
         if (editedCommentText.trim() !== '') {
-            setComments(comments.map(comment => 
+            setComments(comments.map(comment =>
                 comment.id === editingCommentId ? { ...comment, text: editedCommentText } : comment
             ));
             setEditingCommentId(null);
@@ -120,10 +120,10 @@ const DetailPage: React.FC<DetailPageProps> = ({ movieId }) => {
 
     return (
         <div className='w-full flex justify-center'>
-            <div className="w-2/3 p-4 flex flex-col items-center content-center">
-                <div className="flex justify-center">
-                    <img src={movieDetail.imgUrl} className='w-1/4' alt={movieDetail.title} />
-                    <div className='w-3/4 text-left'>
+            <div className="w-full sm:w-2/3 p-4 flex flex-col items-center content-center">
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <img src={movieDetail.imgUrl} className='w-full sm:w-1/4 rounded-lg' alt={movieDetail.title} />
+                    <div className='w-full sm:w-3/4 text-left'>
                         <h1 className='text-3xl'>{movieDetail.title}</h1>
                         <p><strong>Rating:</strong> {movieDetail.rating}</p>
                         <p><strong>Rating Count:</strong> {movieDetail.ratingCount}</p>
@@ -131,6 +131,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ movieId }) => {
                         <p><strong>Description:</strong> {movieDetail.description}</p>
                     </div>
                 </div>
+
                 <div className="comment-section mt-4 w-full">
                     <h2 className="text-2xl">Comments</h2>
                     {isCommenting ? (
