@@ -4,6 +4,7 @@ import Image from 'next/image';
 import HomePage from './HomePage';
 import DetailPage from "./DetailPage";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 interface NameSearchResult {
     id:string;
@@ -98,6 +99,7 @@ export default function TestSearch() {
             ) : (
                 <HomePage cardClick={handleClick} />
             )}
+        <Footer />
         </>
     );
 }

@@ -125,15 +125,15 @@ const DetailPage: React.FC<DetailPageProps> = ({ movieId }) => {
                     <img src={movieDetail.imgUrl} className='w-full sm:w-1/4 rounded-lg' alt={movieDetail.title} />
                     <div className='w-full sm:w-3/4 text-left'>
                         <h1 className='text-3xl'>{movieDetail.title}</h1>
-                        <p><strong>Rating:</strong> {movieDetail.rating}</p>
-                        <p><strong>Rating Count:</strong> {movieDetail.ratingCount}</p>
-                        <p><strong>Release Date:</strong> {movieDetail.releaseDate}</p>
-                        <p><strong>Description:</strong> {movieDetail.description}</p>
+                        <p className='text-2xl'><strong>Rating:</strong> {movieDetail.rating}</p>
+                        <p className='text-2xl'><strong>Rating Count:</strong> {movieDetail.ratingCount}</p>
+                        <p className='text-2xl'><strong>Release Date:</strong> {movieDetail.releaseDate}</p>
+                        <p className='text-2xl'><strong>Description:</strong> {movieDetail.description}</p>
                     </div>
                 </div>
 
                 <div className="comment-section mt-4 w-full">
-                    <h2 className="text-2xl">Comments</h2>
+                    <h2 className="text-2xl">Share Your Opinion</h2>
                     {isCommenting ? (
                         <div className="comment-form mt-2">
                             <textarea
