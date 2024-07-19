@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import {} from 'react-chartjs-2'
+import { BarChart } from './components/Bart';
 
 interface DetailPageProps {
     movieId: string;
@@ -131,7 +133,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ movieId }) => {
                         <p className='text-2xl'><strong>Description:</strong> {movieDetail.description}</p>
                     </div>
                 </div>
-
+                <BarChart />
                 <div className="comment-section mt-4 w-full">
                     <h2 className="text-2xl">Share Your Opinion</h2>
                     {isCommenting ? (
