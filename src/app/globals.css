@@ -18,39 +18,57 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-    button:hover{
-      background-color: rgb(245, 152, 167);
-    }
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+
+  button:hover {
+    background-color: rgb(245, 152, 167);
+  }
+  .trending-container {
+    position: relative;
+    padding-bottom: 50px; /* Adjust this based on the height of your gradient */
+}
+
+.trending-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; /* Adjust this based on how much gradient you want */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1; /* Ensure it appears on top of the content */
+}
+
 }
 
 /* Custom CSS */
 @media (max-width: 640px) {
   .new-arrivals .displayed-movie {
-    flex: 0 0 calc(50% - 0.5rem); /* Display 2 items in phone mode */
+    flex: 0 0 calc(50% - 0.5rem);
+    /* Display 2 items in phone mode */
   }
 }
 
 @media (min-width: 641px) {
   .new-arrivals .displayed-movie {
-    flex: 0 0 calc(25% - 1rem); /* Display 4 items in larger screens */
+    flex: 0 0 calc(25% - 1rem);
+    /* Display 4 items in larger screens */
   }
 }
 
 @media (max-width: 1199px) {
   .new-arrivals .displayed-movie {
-    flex-direction: column; /* Display image on top and info below for smaller screens */
+    flex-direction: column;
+    /* Display image on top and info below for smaller screens */
   }
 }
 
 @media (min-width: 1200px) {
   .new-arrivals .displayed-movie {
-    flex-direction: row; /* Display image on left and info on right for larger screens */
+    flex-direction: row;
+    /* Display image on left and info on right for larger screens */
   }
 }
 
@@ -82,8 +100,10 @@ body {
 .hover-text-shadow {
   transition: text-shadow 0.3s ease-in-out;
 }
+
 .hover-text-shadow:hover {
-  text-shadow: 2px 2px 10px rgb(248, 113, 113); /* Tailwind's red-300 color */
+  text-shadow: 2px 2px 10px rgb(248, 113, 113);
+  /* Tailwind's red-300 color */
 }
 
 

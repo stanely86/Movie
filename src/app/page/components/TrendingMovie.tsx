@@ -29,10 +29,10 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 700);
         };
-        
+
         // Set initial value
         handleResize();
-        
+
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -71,8 +71,8 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
             }, 100);
         }
     }
-    
-    
+
+
 
     function handleTouchStart(event: React.TouchEvent) {
         touchStartX.current = event.touches[0].clientX;
@@ -96,7 +96,7 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
     }
 
     return (
-        <div
+         <div
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -116,7 +116,7 @@ export default function TrendingMovie({ topMovie, cardClick }: TrendingMovieProp
                     opacity: 1,
                     position: 'relative',
                 }}
-                className="backdrop-blur-ssm p-4 flex flex-col justify-center items-center bg-none"
+                className="backdrop-blur-ssm p-4 flex flex-col justify-center items-center bg-none trending-container"
             >
                 {currentMovie && (
                     <div
