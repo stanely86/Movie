@@ -1,6 +1,6 @@
 // SearchPage.tsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from 'next/image';
 import HomePage from './HomePage';
 import DetailPage from "./DetailPage";
@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ClipLoader from "react-spinners/ClipLoader";
 
+// Types for search results
 interface NameSearchResult {
     id: string;
     name: string;
@@ -22,6 +23,7 @@ interface MovieSearchResult {
     releaseYear: string;
 }
 
+// Main component
 export default function SearchPage() {
     const [searchType, setSearchType] = useState("NAME");
     const [searchResults, setSearchResults] = useState<(NameSearchResult | MovieSearchResult)[]>([]);
@@ -33,9 +35,11 @@ export default function SearchPage() {
         setHasSearched(false);
         setSearchResults([]);
         setSelectedMovieId(null);
+        setLoading(false); // Reset loading state on reset
     }
 
     function handleSearchResults(result: any) {
+        setLoading(false); // Stop loading when results are received
         if (searchType === "NAME") {
             const results: NameSearchResult[] = result.data.mainSearch.edges.map((edge: any) => ({
                 id: "No Name Available",
@@ -64,6 +68,13 @@ export default function SearchPage() {
         handleClick(movieId);
     }
 
+    // Simulate a search action and show loader while waiting
+    useEffect(() => {
+        if (hasSearched) {
+            setLoading(true); // Start loading when a search is initiated
+        }
+    }, [hasSearched]);
+
     return (
         <>
             {/* Search Section */}
@@ -72,9 +83,9 @@ export default function SearchPage() {
                 setHasSearched={setHasSearched}
                 setSearchType={setSearchType}
                 handleSearchResults={handleSearchResults}
-                searchType={searchType}
-                setLoading={setLoading} // Pass setLoading to NavBar
-            />
+                searchType={searchType} setLoading={function (loading: boolean): void {
+                    throw new Error("Function not implemented.");
+                } }            />
 
             {/* Central Content */}
             <div className="content-container" style={{ padding: '10px', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

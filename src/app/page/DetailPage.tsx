@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { BarChart } from './components/Bart';
+import React, { useEffect, useState, Suspense } from 'react';
+import { ClipLoader } from 'react-spinners';
+const BarChart = React.lazy(() => import('./components/Bart'));
 
 interface DetailPageProps {
     movieId: string;
@@ -116,7 +117,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ movieId }) => {
     }
 
     if (!movieDetail) {
-        return <p>Loading...</p>;
+        return <div className="flex justify-center items-center min-h-screen"><ClipLoader color={"#8d0e3f"} size={50} /></div>;
     }
 
     return (
@@ -133,7 +134,9 @@ const DetailPage: React.FC<DetailPageProps> = ({ movieId }) => {
                     </div>
                 </div>
 
-                <BarChart movieId = {movieId}/>
+                <Suspense fallback={<div className="flex justify-center items-center min-h-screen"><ClipLoader color={"#8d0e3f"} size={50} /></div>}>
+                    <BarChart movieId={movieId} />
+                </Suspense>
 
                 <div className="comment-section mt-4 w-full">
                     <h2 className="text-2xl text-gray-50">Share Your Opinion</h2>

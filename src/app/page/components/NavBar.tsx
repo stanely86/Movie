@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 
-interface HomePageProps {
+interface NavBarProps {
     setHasSearched: (hasSearch: boolean) => void,
     handleSearchResults: (result: any) => void,
     searchType: string,
     setSearchType: (result: string) => void,
-    reset: () => void
+    reset: () => void,
+    setLoading: (loading: boolean) => void // New prop for managing loading state
 }
 
-export default function NavBar({ setHasSearched, handleSearchResults, searchType, setSearchType, reset }: HomePageProps) {
+export default function NavBar({ setHasSearched, handleSearchResults, searchType, setSearchType, reset, setLoading }: NavBarProps) {
     const [searchValue, setSearchValue] = useState("");
     const [isSearching, setIsSearching] = useState(false);
 
     async function search() {
+        setLoading(true); // Trigger loading animation
         const url = `https://imdb8.p.rapidapi.com/v2/search?searchTerm=${searchValue}&type=${searchType}&first=10`;
         const options = {
             method: 'GET',
@@ -24,12 +26,13 @@ export default function NavBar({ setHasSearched, handleSearchResults, searchType
         try {
             const response = await fetch(url, options);
             const result = await response.json();
-            console.log(result);
             handleSearchResults(result);
             setHasSearched(true);
-            setIsSearching(false); // Hide search overlay after search
         } catch (error) {
             console.error('Error fetching search results:', error);
+        } finally {
+            setLoading(false); // Stop loading animation
+            setIsSearching(false); // Hide search overlay after search
         }
     }
 

@@ -1,6 +1,6 @@
+// BarChart.tsx
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -35,8 +35,7 @@ interface ChartData {
     }[];
 }
 
-
-export const BarChart: React.FC<BarChartProps> = ({ movieId }) => {
+const BarChart: React.FC<BarChartProps> = ({ movieId }) => {
     const [chartData, setChartData] = useState<ChartData | null>(null);
 
     useEffect(() => {
@@ -110,7 +109,10 @@ export const BarChart: React.FC<BarChartProps> = ({ movieId }) => {
     };
 
     const options = {
+        // Add any chart options you need here
     };
 
     return chartData ? <Bar options={options} data={chartData} /> : <p>Loading...</p>;
 };
+
+export default BarChart;

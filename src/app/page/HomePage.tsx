@@ -1,14 +1,16 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import TrendingMovie from './components/TrendingMovie';
-import NewArrivals from './components/NewArrivals';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { ClipLoader } from 'react-spinners';
+
+const TrendingMovie = lazy(() => import('./components/TrendingMovie'));
+const NewArrivals = lazy(() => import('./components/NewArrivals'));
 
 interface HomePageProps {
     cardClick: (movieId: string) => void;
 }
 
 interface TrendingMovie {
-    id:string;
+    id: string;
     imgUrl: string;
     title: string;
     rating: number;
@@ -48,14 +50,14 @@ export default function HomePage({ cardClick }: HomePageProps) {
     function handleTrendResults(result: any) {
         const results: TrendingMovie[] = result.data.topTrendingTitles.edges.map((edge: any) => {
             const trailer = edge.node.item.latestTrailer;
-            const movieId = trailer.primaryTitle.id
+            const movieId = trailer.primaryTitle.id;
             const titleGenres = trailer.primaryTitle.titleGenres?.genres || [];
             const releaseDate = trailer.primaryTitle.releaseDate || {};
             const country = releaseDate.country ? releaseDate.country.id : 'Unknown';
             const year = releaseDate.year || 'Unknown';
-            
+
             return {
-                id : movieId,
+                id: movieId,
                 imgUrl: trailer.primaryTitle.primaryImage.url,
                 title: trailer.primaryTitle.titleText.text,
                 rating: trailer.primaryTitle.ratingsSummary.aggregateRating,
@@ -71,8 +73,20 @@ export default function HomePage({ cardClick }: HomePageProps) {
 
     return (
         <div>
-            <TrendingMovie topMovie={topMovie} cardClick={cardClick} />
-            <NewArrivals topMovie={topMovie} cardClick={cardClick} />
+            <Suspense fallback={<div className="flex justify-center items-center min-h-screen"><ClipLoader size={50} color={"#8d0e3f"} /></div>}>
+                {topMovie.length > 0 ? (
+                    <TrendingMovie topMovie={topMovie} cardClick={cardClick} />
+                ) : (
+                    <div className="flex justify-center items-center min-h-screen"><ClipLoader size={50} color={"#8d0e3f"} /></div>
+                )}
+            </Suspense>
+            <Suspense fallback={<div className="flex justify-center items-center min-h-screen"><ClipLoader size={50} color={"#8d0e3f"} /></div>}>
+                {topMovie.length > 0 ? (
+                    <NewArrivals topMovie={topMovie} cardClick={cardClick} />
+                ) : (
+                    <div className="flex justify-center items-center min-h-screen"><ClipLoader size={50} color={"#8d0e3f"} /></div>
+                )}
+            </Suspense>
         </div>
     );
 }
