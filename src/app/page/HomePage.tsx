@@ -37,7 +37,7 @@ export default function HomePage({ cardClick }: HomePageProps) {
             try {
                 const response = await fetch(url, options);
                 const result = await response.json();
-                console.log(result);
+                console.log('API Response:', result);
                 handleTrendResults(result);
             } catch (error) {
                 console.error(error);
@@ -50,26 +50,41 @@ export default function HomePage({ cardClick }: HomePageProps) {
     function handleTrendResults(result: any) {
         const results: TrendingMovie[] = result.data.topTrendingTitles.edges.map((edge: any) => {
             const trailer = edge.node.item.latestTrailer;
-            const movieId = trailer.primaryTitle.id;
+            if (!trailer || !trailer.primaryTitle) {
+                console.warn('Trailer or primaryTitle is missing:', trailer);
+                return {
+                    id: 'Unknown',
+                    imgUrl: '',
+                    title: 'Unknown',
+                    rating: 0,
+                    description: '',
+                    genre: [],
+                    year: 'Unknown',
+                    country: 'Unknown',
+                };
+            }
+    
+            const movieId = trailer.primaryTitle.id || 'Unknown';
             const titleGenres = trailer.primaryTitle.titleGenres?.genres || [];
             const releaseDate = trailer.primaryTitle.releaseDate || {};
             const country = releaseDate.country ? releaseDate.country.id : 'Unknown';
             const year = releaseDate.year || 'Unknown';
-
+    
             return {
                 id: movieId,
-                imgUrl: trailer.primaryTitle.primaryImage.url,
-                title: trailer.primaryTitle.titleText.text,
-                rating: trailer.primaryTitle.ratingsSummary.aggregateRating,
-                description: trailer.description.value,
-                genre: titleGenres.map((genre: any) => genre.genre.genreId),
+                imgUrl: trailer.primaryTitle.primaryImage?.url || '',
+                title: trailer.primaryTitle.titleText?.text || 'Unknown',
+                rating: trailer.primaryTitle.ratingsSummary?.aggregateRating || 0,
+                description: trailer.description?.value || '',
+                genre: titleGenres.map((genre: any) => genre.genre.genreId) || [],
                 year,
                 country,
             };
         });
-
+    
         setTopMovie(results);
     }
+    
 
     return (
         <div>
