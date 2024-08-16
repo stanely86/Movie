@@ -5,7 +5,7 @@ import Image from 'next/image';
 import HomePage from './HomePage';
 import DetailPage from "./DetailPage";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import Footer from "./components/element/Footer";
 import ClipLoader from "react-spinners/ClipLoader";
 
 // Types for search results

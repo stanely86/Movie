@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import SwtichButton from './element/SwitchButton';
+import MovieCard from './element/MovieCard';
 
 interface NewArrivalsProps {
     topMovie: TrendingMovie[];
@@ -63,10 +65,10 @@ const NewArrivals: React.FC<NewArrivalsProps> = ({ topMovie, cardClick }) => {
     }
 
     return (
-        <div className="p-4 flex flex-col items-center">
+        <div className="p-4 flex flex-col items-center w-full">
             <h2 className="py-4 text-2xl sm:text-3xl hover-text-shadow">New Arrivals</h2>
             <div
-                className="flex items-center mb-4 w-full relative overflow-x-auto cursor-pointer"
+                className="flex items-center mb-4 w-11/12 relative overflow-x-auto cursor-pointer"
                 ref={carouselRef}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
@@ -74,38 +76,26 @@ const NewArrivals: React.FC<NewArrivalsProps> = ({ topMovie, cardClick }) => {
                 onMouseLeave={handleMouseLeave}
             >
                 {displayedMovies.length > 0 && (
-                    <button
-                        onClick={handleCarouselPrev}
-                        className="p-2 border rounded bg-none absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full sm:-translate-x-0 sm:ml-4"
-                    >
-                        ←
-                    </button>
-                )}
-                <div className="flex py-4 space-x-4 sm:w-6/12">
+                     <SwtichButton
+                     action={handleCarouselPrev}
+                     icon = "←"
+                     />
+                )} 
+                <div className="flex py-4 space-x-4 sm:w-6/12 overflow-x: auto
+">
                     {displayedMovies.map((movie, index) => (
-                        <div
-                            onClick={() => cardClick(movie.id)}
-                            key={index}
-                            className="mt-4 shadow-lg shadow-pink-950 transition duration-300 ease-in-out hover:shadow-pink-700 text-left h-2/3 cursor-pointer flex-shrink-0 rounded"
-                            style={{ minWidth: 'calc(50% - 1rem)', maxWidth: 'calc(50% - 1rem)', marginRight: '1rem' }}
-                        >
-                            <img src={movie.imgUrl} alt={movie.title} className="w-full object-contain rounded mb-2 sm:max-h-60 md:max-h-80 lg:max-h-96" />
-                            <div className="py-4 flex flex-col w-full text-center">
-                                <h2 className="text-sm sm:text-lg font-bold">{movie.title}</h2>
-                                <p className="text-xs sm:text-sm"><strong>Year and Location:</strong> {movie.country}, {movie.year}</p>
-                                <p className="text-xs sm:text-sm"><strong>Rating:</strong> {movie.rating}</p>
-                                <p className="text-xs sm:text-sm"><strong>Genre:</strong> {movie.genre.join(", ")}</p>
-                            </div>
-                        </div>
+                        <MovieCard
+                            movie={movie}
+                            index={index}
+                            onClick={cardClick}
+                        />
                     ))}
                 </div>
                 {displayedMovies.length > 0 && (
-                    <button
-                        onClick={handleCarouselNext}
-                        className="p-2 border rounded bg-none absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-full sm:translate-x-0 sm:mr-4"
-                    >
-                        →
-                    </button>
+                    <SwtichButton
+                    action={handleCarouselNext}
+                    icon = "→" 
+                    />
                 )}
             </div>
         </div>

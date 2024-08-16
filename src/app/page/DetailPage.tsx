@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { ClipLoader } from 'react-spinners';
-const BarChart = React.lazy(() => import('./components/Bart'));
+const BarChart = React.lazy(() => import('./components/element/Bart'));
 
 interface DetailPageProps {
     movieId: string;

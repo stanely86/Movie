@@ -5,7 +5,7 @@ import Image from 'next/image';
 import HomePage from './HomePage';
 import DetailPage from "./DetailPage";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import Footer from "./components/element/Footer";
 import ClipLoader from "react-spinners/ClipLoader";
 
 interface NameSearchResult {
@@ -77,7 +77,7 @@ export default function SearchPage() {
             />
 
             {/* Central Content */}
-            <div className="content-container" style={{ padding: '10px', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className="content-container flex flex-col" style={{minHeight: '100vh', justifyContent: 'center', alignItems: 'center' }}>
                 {loading ? (
                     <ClipLoader color={"#8d0e3f"} size={50} />
                 ) : hasSearched && searchResults.length > 0 ? (

@@ -87,7 +87,7 @@ export default function HomePage({ cardClick }: HomePageProps) {
     
 
     return (
-        <div>
+        <>
             <Suspense fallback={<div className="flex justify-center items-center min-h-screen"><ClipLoader size={50} color={"#8d0e3f"} /></div>}>
                 {topMovie.length > 0 ? (
                     <TrendingMovie topMovie={topMovie} cardClick={cardClick} />
@@ -102,6 +102,6 @@ export default function HomePage({ cardClick }: HomePageProps) {
                     <div className="flex justify-center items-center min-h-screen"><ClipLoader size={50} color={"#8d0e3f"} /></div>
                 )}
             </Suspense>
-        </div>
+        </>
     );
 }
