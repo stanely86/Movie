@@ -11,15 +11,15 @@ interface MovieCardProps {
     year: number;
     country: string;
   };
-  index: number;
+  key: number;
   onClick?: (movieId: string) => void; // Optional click handler
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie, index, onClick }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ movie, key, onClick }) => {
   return (
     <div
       onClick={onClick ? () => onClick(movie.id) : undefined}
-      key={index}
+      key={key}
       className="mt-4 shadow-lg shadow-pink-950 transition duration-300 ease-in-out hover:shadow-pink-700 text-left h-2/3 cursor-pointer flex-shrink-0 rounded"
       style={{ minWidth: 'calc(50% - 1rem)', maxWidth: 'calc(50% - 1rem)', marginRight: '1rem' }}
     >
