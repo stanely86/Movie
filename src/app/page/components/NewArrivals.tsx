@@ -86,7 +86,7 @@ const NewArrivals: React.FC<NewArrivalsProps> = ({ topMovie, cardClick }) => {
                     {displayedMovies.map((movie, index) => (
                         <MovieCard
                             movie={movie}
-                            index={index}
+                            key={index}
                             onClick={cardClick}
                         />
                     ))}
