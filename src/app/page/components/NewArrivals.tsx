@@ -83,10 +83,10 @@ const NewArrivals: React.FC<NewArrivalsProps> = ({ topMovie, cardClick }) => {
                 )} 
                 <div className="flex py-4 space-x-4 sm:w-6/12 overflow-x: auto
 ">
-                    {displayedMovies.map((movie, index) => (
+                    {displayedMovies.map((movie) => (
                         <MovieCard
                             movie={movie}
-                            key={index}
+                            key={movie.id}
                             onClick={cardClick}
                         />
                     ))}

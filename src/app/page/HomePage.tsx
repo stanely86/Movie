@@ -29,7 +29,7 @@ export default function HomePage({ cardClick }: HomePageProps) {
             const options = {
                 method: 'GET',
                 headers: {
-                    'x-rapidapi-key': '272c20de72msh7600bfac64d9ec4p10d181jsne0a2759f8116',
+                    'x-rapidapi-key': '87d4b5ab45mshe5e256ac4029f3bp11b320jsnd250a4fe1339',
                     'x-rapidapi-host': 'imdb8.p.rapidapi.com'
                 }
             };
@@ -37,7 +37,6 @@ export default function HomePage({ cardClick }: HomePageProps) {
             try {
                 const response = await fetch(url, options);
                 const result = await response.json();
-                console.log('API Response:', result);
                 handleTrendResults(result);
             } catch (error) {
                 console.error(error);
@@ -63,13 +62,13 @@ export default function HomePage({ cardClick }: HomePageProps) {
                     country: 'Unknown',
                 };
             }
-    
+
             const movieId = trailer.primaryTitle.id || 'Unknown';
             const titleGenres = trailer.primaryTitle.titleGenres?.genres || [];
             const releaseDate = trailer.primaryTitle.releaseDate || {};
             const country = releaseDate.country ? releaseDate.country.id : 'Unknown';
             const year = releaseDate.year || 'Unknown';
-    
+
             return {
                 id: movieId,
                 imgUrl: trailer.primaryTitle.primaryImage?.url || '',
@@ -81,10 +80,10 @@ export default function HomePage({ cardClick }: HomePageProps) {
                 country,
             };
         });
-    
+
         setTopMovie(results);
     }
-    
+
 
     return (
         <>
