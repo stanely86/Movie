@@ -39,27 +39,45 @@ const BarChart: React.FC<BarChartProps> = ({ movieId }) => {
     const [chartData, setChartData] = useState<ChartData | null>(null);
 
     useEffect(() => {
+        let isMounted = true;
+
         const fetchData = async () => {
             const url = `https://imdb8.p.rapidapi.com/title/get-ratings?tconst=${movieId}`;
             const options = {
                 method: 'GET',
                 headers: {
-                    'x-rapidapi-key': '272c20de72msh7600bfac64d9ec4p10d181jsne0a2759f8116',
+                    'x-rapidapi-key': '87d4b5ab45mshe5e256ac4029f3bp11b320jsnd250a4fe1339',
                     'x-rapidapi-host': 'imdb8.p.rapidapi.com'
                 }
             };
 
-            try {
-                const response = await fetch(url, options);
-                const result = await response.json();
-                const transformedData = transformData(result);
-                setChartData(transformedData);
-            } catch (error) {
-                console.error(error);
+            for (let attempt = 0; attempt < 3; attempt++) {
+                try {
+                    const response = await fetch(url, options);
+
+                    if (response.status === 429) {
+                        const waitTime = 1000 * (attempt + 1); // Wait longer with each attempt
+                        await new Promise(resolve => setTimeout(resolve, waitTime));
+                        continue; // Retry the fetch
+                    }
+
+                    const result = await response.json();
+                    if (isMounted) {
+                        const transformedData = transformData(result);
+                        setChartData(transformedData);
+                    }
+                    break; // Exit loop if successful
+                } catch (error) {
+                    console.error(error);
+                    break; // Exit loop on error
+                }
             }
         };
 
         fetchData();
+        return () => {
+            isMounted = false; // Cleanup on unmount
+        };
     }, [movieId]);
 
     const transformData = (apiData: any) => {
@@ -85,7 +103,7 @@ const BarChart: React.FC<BarChartProps> = ({ movieId }) => {
             "IMDb Users"
         ];
 
-        const ratingsHistograms = apiData.ratingsHistograms;
+        const ratingsHistograms = apiData.ratingsHistograms || {};
 
         const data = labels.map(label => {
             const histogramData = ratingsHistograms[label];
@@ -101,8 +119,8 @@ const BarChart: React.FC<BarChartProps> = ({ movieId }) => {
                     backgroundColor: "rgba(255,99,132,0.2)",
                     borderColor: "rgba(245, 40, 145, 0.8)",
                     borderWidth: 1,
-                    hoverBorderColor: "rgba(255, 215, 0, 0.75)", // Lighter border color on hover
-                    hoverBorderWidth: 3 // Slightly wider border on hover
+                    hoverBorderColor: "rgba(255, 215, 0, 0.75)",
+                    hoverBorderWidth: 3
                 }
             ]
         };
